@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="stylesheet" href="_ds/industry-ed92c90d-1ca2-45d2-8230-bb02ece39cfd/styles.css">
+<script src="_ds/industry-ed92c90d-1ca2-45d2-8230-bb02ece39cfd/_ds_bundle.js"></script>
+<link rel="stylesheet" href="./styles.css">
+<script src="./image-slot.js"></script>
+<style>
+  /* Brand override: Gasstocks indigo #28166F replaces the system's steel accent.
+     The ramp keeps the design system's perceptual lightness steps, re-hued to
+     the brand so every component that reads --color-accent-* follows. */
+  :root {
+    --color-accent: #28166f;
+    --color-accent-100: oklch(0.955 0.022 288);
+    --color-accent-200: oklch(0.895 0.048 288);
+    --color-accent-300: oklch(0.80 0.088 288);
+    --color-accent-400: oklch(0.66 0.140 288);
+    --color-accent-500: #28166f;
+    --color-accent-600: oklch(0.375 0.155 288);
+    --color-accent-700: oklch(0.315 0.140 288);
+    --color-accent-800: oklch(0.255 0.115 288);
+    --color-accent-900: oklch(0.195 0.088 288);
+    --color-accent-2: #28166f;
+    --color-accent-2-100: var(--color-accent-100);
+    --color-accent-2-200: var(--color-accent-200);
+    --color-accent-2-300: var(--color-accent-300);
+    --color-accent-2-500: var(--color-accent-500);
+    --color-accent-2-700: var(--color-accent-700);
+    --color-accent-2-900: var(--color-accent-900);
+  }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--color-bg); }
+  a { color: var(--color-accent-700); text-decoration: none; }
+  a:hover { color: var(--color-accent-900); }
+
+  /* Flat mode — the single source of truth for the non-3D layout. Anything
+     that gives up on WebGL (small viewport, slow or failed three.js load, GL
+     error) just sets data-gs-flat on the root element; these rules do the rest. */
+  [data-gs-flat] [data-gs-scroller] { height: auto !important; }
+  [data-gs-flat] [data-gs-sticky] { position: static !important; height: auto !important; }
+  [data-gs-flat] [data-gs-stage],
+  [data-gs-flat] [data-gs-chrome],
+  [data-gs-flat] [data-gs-3donly] { display: none !important; }
+  [data-gs-flat] [data-gs-panel] {
+    position: static !important; opacity: 1 !important; transform: none !important;
+    pointer-events: auto !important; padding: 64px 32px !important;
+    border-top: 1px solid var(--color-divider);
+  }
+  /* first panel clears the fixed header, which is out of flow */
+  [data-gs-flat] [data-gs-panel="0"] { padding-top: 132px !important; border-top: 0; }
+  [data-gs-flat] [data-gs-panel] [data-gs-hit] {
+    position: static !important; pointer-events: auto !important;
+    inset: auto !important; max-width: 1320px; margin-left: auto; margin-right: auto;
+  }
+  /* flow layout, not the stage's centred flex box */
+  [data-gs-flat] [data-gs-panel] { display: block !important; }
+  [data-gs-flat] [data-gs-panel] [data-gs-hit] + [data-gs-hit] { margin-top: 44px; }
+  /* the exploded-view callouts become the discipline list they describe */
+  .btn {
+    height: auto !important; min-height: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+    text-align: center; line-height: 1.25;
+  }
+  [data-gs-flat] [data-gs-labels] {
+    position: static !important; inset: auto !important; pointer-events: auto !important;
+    display: grid !important; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 10px; max-width: 1320px; margin: 0 auto; padding: 0 32px 72px;
+  }
+  [data-gs-flat] [data-gs-node] {
+    position: static !important; opacity: 1 !important; transform: none !important;
+    pointer-events: auto !important; white-space: normal !important;
+  }
+
+  @media (max-width: 860px) {
+    [data-gs-flat] [data-gs-panel] { padding: 48px 20px !important; }
+    [data-gs-flat] [data-gs-panel="0"] { padding-top: 108px !important; }
+    [data-gs-flat] [data-gs-labels] { padding: 0 20px 52px; }
+    [data-gs-wrap] { flex-wrap: wrap !important; }
+    [data-gs-wrap] p { text-align: left !important; max-width: none !important; }
+    [data-gs-cols] { grid-template-columns: 1fr !important; }
+    [data-gs-cols2] { grid-template-columns: repeat(2, 1fr) !important; }
+    [data-gs-topnav] { display: none !important; }
+    header { padding: 12px 18px !important; gap: 12px !important; }
+    [data-gs-navcta] { font-size: 12px !important; padding: 8px 12px !important; }
+  }
+</style>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var flat = function () { root.setAttribute('data-gs-flat', ''); };
+    if (window.matchMedia('(max-width: 860px)').matches) flat();
+    window.addEventListener('resize', function () {
+      if (window.matchMedia('(max-width: 860px)').matches) flat();
+    }, { passive: true });
+    // three.js never arrived — stop waiting and show the flat page. The scene
+    // signals data-booting once its module import resolves, so a slow CDN fetch
+    // and a slow world build each get their own budget rather than sharing one.
+    // A hidden tab has no animation frames, so the world build legitimately
+    // stalls; give up only once the page is actually being looked at.
+    var giveUp = function () {
+      if (document.querySelector('gs-scene[data-ready]')) return;
+      if (document.hidden) {
+        document.addEventListener('visibilitychange', function once() {
+          document.removeEventListener('visibilitychange', once);
+          setTimeout(giveUp, 9000);
+        });
+        return;
+      }
+      flat();
+    };
+    setTimeout(function () {
+      var s = document.querySelector('gs-scene');
+      if (s && s.hasAttribute('data-ready')) return;
+      if (s && s.hasAttribute('data-booting')) { setTimeout(giveUp, 12000); return; }
+      giveUp();
+    }, 9000);
+  })();
+</script>
+</helmet>
+
+<!-- no overflow on this wrapper: overflow-x:hidden computes overflow-y to auto,
+     which would make it the scrollport for [data-gs-sticky] and kill the pin. --><div style="font-family:var(--font-body);color:var(--color-text);background:var(--color-bg)">
+
+  <header style="position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;gap:28px;padding:14px 32px;background:color-mix(in srgb, var(--color-bg) 84%, transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--color-divider)">
+    <a href="#top" style="display:flex;align-items:baseline;gap:9px;margin-right:auto;text-decoration:none;color:inherit">
+      <img src="uploads/gasstocks logo3d.png" alt="Gasstocks Limited" style="height:34px;width:auto;display:block">
+      <span style="font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:color-mix(in srgb,var(--color-text) 48%,transparent)">Marine · Civil · Plant hire</span>
+    </a>
+    <nav data-gs-topnav style="display:flex;gap:22px;font-size:13px;letter-spacing:0.02em">
+      <a href="#leasing" style="text-decoration:none;color:inherit;font-size:13px;letter-spacing:0.06em">Equipment leasing</a>
+      <a href="#capability" style="color:inherit">Capability</a>
+      <a href="#record" style="color:inherit">Track record</a>
+      <a href="#assurance" style="color:inherit">Assurance</a>
+      <a href="#contact" style="color:inherit">Contact</a>
+    </nav>
+    <a class="btn btn-primary blueprint" data-gs-navcta href="#contact" style="text-decoration:none">
+      Request capability statement
+      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+    </a>
+  </header>
+
+  <!-- ══ THE 3D JOURNEY ══════════════════════════════════════════════ -->
+  <div id="top" data-gs-scroller data-screen-label="3D journey" style="position:relative;height:810vh">
+    <div data-gs-sticky style="position:sticky;top:0;height:100vh;overflow:hidden">
+
+      <div data-gs-stage style="position:absolute;inset:0">
+        <x-import component-from-global-scope="gs-scene" from="./gs-scene.js" hint-size="100%,100%"></x-import>
+      </div>
+
+      <!-- horizon rule + running coordinates, drawn like a survey sheet -->
+      <div data-gs-chrome style="position:absolute;left:0;right:0;bottom:56px;height:1px;background:var(--color-divider);pointer-events:none"></div>
+      <div data-gs-chrome style="position:absolute;left:32px;bottom:22px;display:flex;gap:24px;font-family:ui-monospace,Menlo,monospace;font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:color-mix(in srgb,var(--color-bg) 82%,transparent);text-shadow:0 1px 3px rgba(8,16,22,0.55);pointer-events:none">
+        <span>Sheet 01</span><span>Sea → Shore section</span><span>Scale n.t.s.</span>
+      </div>
+      <div data-gs-chrome style="position:absolute;right:32px;bottom:22px;font-family:ui-monospace,Menlo,monospace;font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:color-mix(in srgb,var(--color-bg) 82%,transparent);text-shadow:0 1px 3px rgba(8,16,22,0.55);pointer-events:none">Scroll to traverse</div>
+
+      <!-- ── panel 0 · hero ── -->
+      <div data-gs-panel="0" data-screen-label="Hero" style="position:absolute;inset:0;pointer-events:none;z-index:4;display:flex;flex-direction:column;justify-content:center;gap:clamp(20px,3.4vh,44px);padding:96px 32px 92px;opacity:1">
+        <div data-gs-hit style="max-width:1320px;margin:0 auto;width:100%;pointer-events:none">
+          <div data-gs-plate class="blueprint" style="pointer-events:none;max-width:min(62%,880px);min-width:min(100%,420px);padding:clamp(24px,3.4vh,40px) clamp(26px,3vw,44px) clamp(26px,3.6vh,42px);background:color-mix(in srgb,var(--color-accent-900) 88%,transparent);border-color:color-mix(in srgb,var(--color-bg) 34%,transparent);color:var(--color-bg)">
+          <i class="corner tl" style="color:color-mix(in srgb,var(--color-bg) 60%,transparent)"></i><i class="corner tr" style="color:color-mix(in srgb,var(--color-bg) 60%,transparent)"></i><i class="corner bl" style="color:color-mix(in srgb,var(--color-bg) 60%,transparent)"></i><i class="corner br" style="color:color-mix(in srgb,var(--color-bg) 60%,transparent)"></i>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:22px">
+            <span style="width:26px;height:1px;background:var(--color-accent-300)"></span>
+            <span style="font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-accent-200)">Marine &amp; civil infrastructure contractor · est. 2004</span>
+          </div>
+          <h1 style="font-size:clamp(38px,min(6.2vw,8.6vh),96px);line-height:0.94;letter-spacing:-0.025em;margin:0 0 clamp(14px,2.4vh,24px);max-width:16ch">We build the route from vessel to shore.</h1>
+          <p style="font-size:clamp(15px,1.7vh,18px);line-height:1.5;max-width:56ch;margin:0 0 clamp(18px,3vh,30px);color:color-mix(in srgb,var(--color-bg) 82%,transparent);text-wrap:pretty">Nine disciplines under one contract: shipping, dredging, marine construction and the civil works that carry cargo inland. One accountable party from the anchorage to the last kilometre of road.</p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap">
+            <a class="btn btn-primary blueprint" href="#contact" style="text-decoration:none;padding:11px 20px;font-size:15px">Request capability statement<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></a>
+            <a class="btn btn-secondary" href="#capability" style="text-decoration:none;padding:11px 20px;font-size:15px;color:var(--color-bg);border-color:color-mix(in srgb,var(--color-bg) 45%,transparent);background:transparent">View capability register</a>
+          </div>
+          </div>
+        </div>
+        <div data-gs-hit style="width:100%;max-width:1320px;margin:0 auto;pointer-events:none">
+          <div data-gs-cols style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--color-divider);border:1px solid var(--color-divider)">
+            <div style="background:var(--color-bg);padding:14px 16px"><div style="font-family:var(--font-heading);font-size:28px;line-height:1">2004</div><div style="font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:color-mix(in srgb,var(--color-text) 52%,transparent)">Year founded</div></div>
+            <div style="background:var(--color-bg);padding:14px 16px"><div style="font-family:var(--font-heading);font-size:28px;line-height:1">184</div><div style="font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:color-mix(in srgb,var(--color-text) 52%,transparent)">Projects delivered</div></div>
+            <div style="background:var(--color-bg);padding:14px 16px"><div style="font-family:var(--font-heading);font-size:28px;line-height:1">14</div><div style="font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:color-mix(in srgb,var(--color-text) 52%,transparent)">Countries of operation</div></div>
+            <div style="background:var(--color-bg);padding:14px 16px"><div style="font-family:var(--font-heading);font-size:28px;line-height:1">09</div><div style="font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:color-mix(in srgb,var(--color-text) 52%,transparent)">Current accreditations</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── panel 1 · offshore ── -->
+      <div data-gs-panel="1" data-screen-label="01 Offshore" style="position:absolute;inset:0;pointer-events:none;display:flex;align-items:center;padding:0 32px 60px;opacity:0">
+        <div style="max-width:1320px;margin:0 auto;width:100%">
+          <div class="blueprint" data-gs-hit style="pointer-events:none;max-width:480px;background:color-mix(in srgb,var(--color-bg) 90%,transparent);padding:26px 28px 28px">
+            <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+            <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:14px">
+              <span style="font-family:ui-monospace,Menlo,monospace;font-size:11px;color:var(--color-accent-700)">01</span>
+              <span style="font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:color-mix(in srgb,var(--color-text) 55%,transparent)">Offshore · anchorage</span>
+            </div>
+            <h2 style="font-size:44px;line-height:1.02;margin:0 0 14px">Shipping &amp;<br>marine logistics</h2>
+            <p style="font-size:15px;line-height:1.6;margin:0 0 20px;color:color-mix(in srgb,var(--color-text) 76%,transparent);text-wrap:pretty">Owned and chartered tonnage moving LPG, LNG and clean petroleum products, backed by a support fleet that keeps offshore installations crewed, supplied and on schedule.</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--color-divider);border:1px solid var(--color-divider);margin-bottom:18px">
+              <div style="background:var(--color-bg);padding:11px 13px"><div style="font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:color-mix(in srgb,var(--color-text) 50%,transparent);margin-bottom:3px">Tonnage</div><div style="font-size:14px">6 owned · 20+ chartered</div></div>
+              <div style="background:var(--color-bg);padding:11px 13px"><div style="font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:color-mix(in srgb,var(--color-text) 50%,transparent);margin-bottom:3px">Compliance</div><div style="font-size:14px">ISM · ISPS · MARPOL</div></div>
+            </div>
+            <div style="display:flex;gap:7px;flex-wrap:wrap"><span class="tag tag-outline">Chartering</span><span class="tag tag-outline">Ship management</span><span class="tag tag-outline">Offshore supply</span><span class="tag tag-outline">Port agency</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── panel 2 · dredging ── -->
+      <div data-gs-panel="2" data-screen-label="02 Approach channel" style="position:absolute;inset:0;pointer-events:none;display:flex;align-items:center;padding:0 32px 60px;opacity:0">
+        <div style="max-width:1320px;margin:0 auto;width:100%;display:flex;justify-content:flex-end">
+          <div class="blueprint" data-gs-hit style="pointer-events:none;max-width:480px;background:color-mix(in srgb,var(--color-bg) 90%,transparent);padding:26px 28px 28px">
+            <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+            <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:14px">
+              <span style="font-family:ui-monospace,Menlo,monospace;font-size:11px;color:var(--color-accent-700)">02</span>
+              <span style="font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:color-mix(in srgb,var(--color-text) 55%,transparent)">Approach channel · seabed</span>
+            </div>
+            <h2 style="font-size:44px;line-height:1.02;margin:0 0 14px">Dredging &amp;<br>reclamation</h2>
+            <p style="font-size:15px;line-height:1.6;margin:0 0 20px;color:color-mix(in srgb,var(--color-text) 76%,transparent);text-wrap:pretty">Capital and maintenance dredging to declared depth, with surveyed tolerances and beneficial reuse of spoil for reclamation and shoreline protection.</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--color-divider);border:1px solid var(--color-divider);margin-bottom:18px">
+              <div style="background:var(--color-bg);padding:11px 13px"><div style="font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:color-mix(in srgb,var(--color-text) 50%,transparent);margin-bottom:3px">Plant</div><div style="font-size:14px">CSD · TSHD · pipeline</div></div>
+              <div style="background:var(--color-bg);padding:11px 13px"><div style="font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:color-mix(in srgb,var(--color-text) 50%,transparent);margin-bottom:3px">Tolerance</div><div style="font-size:14px">±0.25 m to CD</div></div>
+            </div>
+            <div style="display:flex;gap:7px;flex-wrap:wrap"><span class="tag tag-outline">Capital dredging</span><span class="tag tag-outline">Maintenance</span><span class="tag tag-outline">Reclamation</span><span class="tag tag-outline">Bathymetric survey</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── panel 3 · the berth ── -->
+      <div data-gs-panel="3" data-screen-label="03 The berth" style="position:absolute;inset:0;pointer-events:none;display:flex;align-items:center;padding:0 32px 60px;opacity:0">
+        <div style="max-width:1320px;margin:0 auto;width:100%">
+          <div class="blueprint" data-gs-hit style="pointer-events:none;max-width:500px;background:color-mix(in srgb,var(--color-bg) 90%,transparent);padding:26px 28px 28px">
+            <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+            <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:14px">
+              <span style="font-family:ui-monospace,Menlo,monospace;font-size:11px;color:var(--color-accent-700)">03</span>
+              <span style="font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:color-mix(in srgb,var(--color-text) 55%,transparent)">The berth · terminal</span>
+            </div>
+            <h2 style="font-size:44px;line-height:1.02;margin:0 0 14px">Jetty construction,<br>security &amp; catering</h2>
+            <p style="font-size:15px;line-height:1.6;margin:0 0 20px;color:color-mix(in srgb,var(--color-text) 76%,transparent);text-wrap:pretty">Piled jetties, berthing and mooring dolphins and loading platforms — then the standing operation around them: exclusion-zone patrol, accommodation and galley services for the crews who run the terminal.</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--color-divider);border:1px solid var(--color-divider);margin-bottom:18px">
+              <div style="background:var(--color-bg);padding:11px 13px"><div style="font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:color-mix(in srgb,var(--color-text) 50%,transparent);margin-bottom:3px">Design code</div><div style="font-size:14px">BS 6349 · Eurocode</div></div>
+              <div style="background:var(--color-bg);padding:11px 13px"><div style="font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:color-mix(in srgb,var(--color-text) 50%,transparent);margin-bottom:3px">Piling</div><div style="font-size:14px">Tubular to 1,220 mm</div></div>
+            </div>
+            <div style="display:flex;gap:7px;flex-wrap:wrap"><span class="tag tag-outline">Piled jetties</span><span class="tag tag-outline">Mooring dolphins</span><span class="tag tag-outline">Marine security</span><span class="tag tag-outline">Offshore catering</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── panel 4 · onshore ── -->
+      <div data-gs-panel="4" data-screen-label="04 Onshore" style="position:absolute;inset:0;pointer-events:none;display:flex;align-items:center;padding:0 32px 60px;opacity:0">
+        <div style="max-width:1320px;margin:0 auto;width:100%">
+          <div class="blueprint" data-gs-hit style="pointer-events:none;max-width:480px;background:color-mix(in srgb,var(--color-bg) 90%,transparent);padding:26px 28px 28px">
+            <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+            <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:14px">
+              <span style="font-family:ui-monospace,Menlo,monospace;font-size:11px;color:var(--color-accent-700)">04</span>
+              <span style="font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:color-mix(in srgb,var(--color-text) 55%,transparent)">Onshore · terminal &amp; corridor</span>
+            </div>
+            <h2 style="font-size:44px;line-height:1.02;margin:0 0 14px">Civil engineering,<br>roads &amp; earthworks</h2>
+            <p style="font-size:15px;line-height:1.6;margin:0 0 20px;color:color-mix(in srgb,var(--color-text) 76%,transparent);text-wrap:pretty">Tank farms, bunds, process buildings and foundations — and the access roads, drainage and bridge approaches that connect a terminal to the network it serves.</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--color-divider);border:1px solid var(--color-divider);margin-bottom:18px">
+              <div style="background:var(--color-bg);padding:11px 13px"><div style="font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:color-mix(in srgb,var(--color-text) 50%,transparent);margin-bottom:3px">Roads built</div><div style="font-size:14px">610 km cumulative</div></div>
+              <div style="background:var(--color-bg);padding:11px 13px"><div style="font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:color-mix(in srgb,var(--color-text) 50%,transparent);margin-bottom:3px">Standard</div><div style="font-size:14px">AASHTO · ISO 9001</div></div>
+            </div>
+            <div style="display:flex;gap:7px;flex-wrap:wrap"><span class="tag tag-outline">Tank farms</span><span class="tag tag-outline">Structural steel</span><span class="tag tag-outline">Highways</span><span class="tag tag-outline">Drainage &amp; culverts</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── panel 5 · plant hire yard ── -->
+      <div data-gs-panel="5" data-screen-label="05 Plant hire yard" style="position:absolute;inset:0;pointer-events:none;display:flex;align-items:center;padding:0 32px 60px;opacity:0">
+        <div style="max-width:1320px;margin:0 auto;width:100%">
+          <div class="blueprint" data-gs-hit style="pointer-events:none;max-width:480px;background:color-mix(in srgb,var(--color-bg) 90%,transparent);padding:26px 28px 28px">
+            <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+            <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:14px">
+              <span style="font-family:ui-monospace,Menlo,monospace;font-size:11px;color:var(--color-accent-700)">05</span>
+              <span style="font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:color-mix(in srgb,var(--color-text) 55%,transparent)">The yard · plant hire</span>
+            </div>
+            <h2 style="font-size:44px;line-height:1.02;margin:0 0 14px">Equipment leasing,<br>operated or bare</h2>
+            <p style="font-size:15px;line-height:1.6;margin:0 0 20px;color:color-mix(in srgb,var(--color-text) 76%,transparent);text-wrap:pretty">Excavators, tippers, dozers, compaction plant, forklifts and crawler cranes off our own hardstanding — inspected, fuelled and mobilised with operators and maintenance cover, or hired bare to your site.</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--color-divider);border:1px solid var(--color-divider);margin-bottom:18px">
+              <div style="background:var(--color-bg);padding:11px 13px"><div style="font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:color-mix(in srgb,var(--color-text) 50%,transparent);margin-bottom:3px">Fleet</div><div style="font-size:14px">240 units on hire</div></div>
+              <div style="background:var(--color-bg);padding:11px 13px"><div style="font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:color-mix(in srgb,var(--color-text) 50%,transparent);margin-bottom:3px">Availability</div><div style="font-size:14px">96% · 24 h mobilisation</div></div>
+            </div>
+            <div style="display:flex;gap:7px;flex-wrap:wrap"><span class="tag tag-outline">Earthmoving</span><span class="tag tag-outline">Haulage</span><span class="tag tag-outline">Lifting</span><span class="tag tag-outline">Compaction</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── panel 6 · exploded capability diagram ── -->
+      <div data-gs-panel="6" data-screen-label="06 Capability diagram" style="position:absolute;inset:0;pointer-events:none;z-index:3;display:flex;flex-direction:column;justify-content:flex-end;padding:96px 32px 56px;opacity:0">
+        <div style="max-width:1320px;margin:0 auto;width:100%">
+          <div data-gs-wrap class="blueprint" style="display:inline-block;max-width:min(100%,600px);padding:22px 30px 24px;background:color-mix(in srgb,var(--color-accent-900) 88%,transparent);border-color:color-mix(in srgb,var(--color-bg) 34%,transparent);color:var(--color-bg)">
+            <i class="corner tl" style="color:color-mix(in srgb,var(--color-bg) 60%,transparent)"></i><i class="corner tr" style="color:color-mix(in srgb,var(--color-bg) 60%,transparent)"></i><i class="corner bl" style="color:color-mix(in srgb,var(--color-bg) 60%,transparent)"></i><i class="corner br" style="color:color-mix(in srgb,var(--color-bg) 60%,transparent)"></i>
+            <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:8px">
+              <span style="font-family:ui-monospace,Menlo,monospace;font-size:11px;color:var(--color-accent-200)">06</span>
+              <span style="font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:color-mix(in srgb,var(--color-bg) 72%,transparent)">Capability diagram · exploded</span>
+            </div>
+            <h2 style="font-size:clamp(30px,4vw,44px);line-height:1.04;margin:0">Nine disciplines.<br>One contract.</h2>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── exploded-view callouts (positioned by the scene) ── -->
+      <svg data-gs-leaders style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2;opacity:0" aria-hidden="true"></svg>
+      <div data-gs-labels style="position:absolute;inset:0;pointer-events:none;z-index:4">
+        <div data-gs-node="vessel" tabindex="0" style="position:absolute;top:0;left:0;opacity:0;will-change:transform;padding:6px 11px;border:1px solid var(--color-accent-700);background:var(--color-bg);white-space:nowrap;cursor:default"><span style="font-family:ui-monospace,Menlo,monospace;font-size:9.5px;color:var(--color-accent-700);margin-right:8px">01</span><span style="font-family:var(--font-heading);font-weight:600;font-size:14px;letter-spacing:0.04em">Shipping &amp; chartering</span></div>
+        <div data-gs-node="logistics" tabindex="0" style="position:absolute;top:0;left:0;opacity:0;will-change:transform;padding:6px 11px;border:1px solid var(--color-accent-700);background:var(--color-bg);white-space:nowrap;cursor:default"><span style="font-family:ui-monospace,Menlo,monospace;font-size:9.5px;color:var(--color-accent-700);margin-right:8px">02</span><span style="font-family:var(--font-heading);font-weight:600;font-size:14px;letter-spacing:0.04em">Marine logistics</span></div>
+        <div data-gs-node="dredging" tabindex="0" style="position:absolute;top:0;left:0;opacity:0;will-change:transform;padding:6px 11px;border:1px solid var(--color-accent-700);background:var(--color-bg);white-space:nowrap;cursor:default"><span style="font-family:ui-monospace,Menlo,monospace;font-size:9.5px;color:var(--color-accent-700);margin-right:8px">03</span><span style="font-family:var(--font-heading);font-weight:600;font-size:14px;letter-spacing:0.04em">Dredging &amp; reclamation</span></div>
+        <div data-gs-node="jetty" tabindex="0" style="position:absolute;top:0;left:0;opacity:0;will-change:transform;padding:6px 11px;border:1px solid var(--color-accent-700);background:var(--color-bg);white-space:nowrap;cursor:default"><span style="font-family:ui-monospace,Menlo,monospace;font-size:9.5px;color:var(--color-accent-700);margin-right:8px">04</span><span style="font-family:var(--font-heading);font-weight:600;font-size:14px;letter-spacing:0.04em">Jetty &amp; marine construction</span></div>
+        <div data-gs-node="security" tabindex="0" style="position:absolute;top:0;left:0;opacity:0;will-change:transform;padding:6px 11px;border:1px solid var(--color-accent-700);background:var(--color-bg);white-space:nowrap;cursor:default"><span style="font-family:ui-monospace,Menlo,monospace;font-size:9.5px;color:var(--color-accent-700);margin-right:8px">05</span><span style="font-family:var(--font-heading);font-weight:600;font-size:14px;letter-spacing:0.04em">Marine security</span></div>
+        <div data-gs-node="catering" tabindex="0" style="position:absolute;top:0;left:0;opacity:0;will-change:transform;padding:6px 11px;border:1px solid var(--color-accent-700);background:var(--color-bg);white-space:nowrap;cursor:default"><span style="font-family:ui-monospace,Menlo,monospace;font-size:9.5px;color:var(--color-accent-700);margin-right:8px">06</span><span style="font-family:var(--font-heading);font-weight:600;font-size:14px;letter-spacing:0.04em">Marine catering</span></div>
+        <div data-gs-node="civil" tabindex="0" style="position:absolute;top:0;left:0;opacity:0;will-change:transform;padding:6px 11px;border:1px solid var(--color-accent-700);background:var(--color-bg);white-space:nowrap;cursor:default"><span style="font-family:ui-monospace,Menlo,monospace;font-size:9.5px;color:var(--color-accent-700);margin-right:8px">07</span><span style="font-family:var(--font-heading);font-weight:600;font-size:14px;letter-spacing:0.04em">Civil engineering</span></div>
+        <div data-gs-node="roads" tabindex="0" style="position:absolute;top:0;left:0;opacity:0;will-change:transform;padding:6px 11px;border:1px solid var(--color-accent-700);background:var(--color-bg);white-space:nowrap;cursor:default"><span style="font-family:ui-monospace,Menlo,monospace;font-size:9.5px;color:var(--color-accent-700);margin-right:8px">08</span><span style="font-family:var(--font-heading);font-weight:600;font-size:14px;letter-spacing:0.04em">Roads &amp; earthworks</span></div>
+        <div data-gs-node="leasing" tabindex="0" style="position:absolute;top:0;left:0;opacity:0;will-change:transform;padding:6px 11px;border:1px solid var(--color-accent-700);background:var(--color-bg);white-space:nowrap;cursor:default"><span style="font-family:ui-monospace,Menlo,monospace;font-size:9.5px;color:var(--color-accent-700);margin-right:8px">09</span><span style="font-family:var(--font-heading);font-weight:600;font-size:14px;letter-spacing:0.04em">Equipment leasing</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ CAPABILITY REGISTER ═════════════════════════════════════════ -->
+  <section id="capability" data-screen-label="Capability register" style="padding:104px 32px 96px;border-top:1px solid var(--color-divider)">
+    <div style="max-width:1320px;margin:0 auto">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:32px;margin-bottom:36px;flex-wrap:wrap">
+        <div>
+          <div style="font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:10px">Capability register</div>
+          <h2 style="font-size:46px;line-height:1.02;margin:0;max-width:20ch">Scope, plant and standard — set out for prequalification.</h2>
+        </div>
+        <p style="font-size:14px;line-height:1.6;max-width:38ch;margin:0;color:color-mix(in srgb,var(--color-text) 65%,transparent);text-wrap:pretty">Every discipline is delivered in-house with owned plant and directly employed supervision. Full asset registers and method statements are issued with the prequalification pack.</p>
+      </div>
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch">
+      <table class="table" style="font-size:14px;min-width:880px">
+        <thead>
+          <tr><th style="width:52px">No.</th><th style="width:22%">Discipline</th><th>Scope</th><th style="width:24%">Key plant</th><th style="width:15%">Standard</th></tr>
+        </thead>
+        <tbody>
+          <tr><td style="font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--color-accent-700)">01</td><td style="font-family:var(--font-heading);font-weight:600;font-size:16px">Shipping &amp; chartering</td><td>Time and voyage charter, LPG / LNG and clean petroleum product carriage, full ship management</td><td>Gas carriers, product tankers</td><td><span class="tag tag-accent">ISM · ISPS</span></td></tr>
+          <tr><td style="font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--color-accent-700)">02</td><td style="font-family:var(--font-heading);font-weight:600;font-size:16px">Marine logistics</td><td>Offshore supply, crew transfer, port agency, project and heavy-lift cargo handling</td><td>PSVs, crew boats, flat-top barges, tugs</td><td><span class="tag tag-accent">ISO 9001</span></td></tr>
+          <tr><td style="font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--color-accent-700)">03</td><td style="font-family:var(--font-heading);font-weight:600;font-size:16px">Dredging &amp; reclamation</td><td>Capital and maintenance dredging, land reclamation, shoreline protection, bathymetric survey</td><td>Cutter suction, hopper dredger, pipeline</td><td><span class="tag tag-accent">IADC</span></td></tr>
+          <tr><td style="font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--color-accent-700)">04</td><td style="font-family:var(--font-heading);font-weight:600;font-size:16px">Jetty &amp; marine construction</td><td>Piled jetties, berthing and mooring dolphins, quay walls, loading platforms, marine repairs</td><td>Piling spreads, jack-up barge, 250 t crawler</td><td><span class="tag tag-accent">BS 6349</span></td></tr>
+          <tr><td style="font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--color-accent-700)">05</td><td style="font-family:var(--font-heading);font-weight:600;font-size:16px">Marine security</td><td>Escort and patrol, exclusion-zone management, vessel hardening, authority liaison</td><td>Patrol craft, ISPS-trained teams</td><td><span class="tag tag-accent">ISPS Code</span></td></tr>
+          <tr><td style="font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--color-accent-700)">06</td><td style="font-family:var(--font-heading);font-weight:600;font-size:16px">Marine catering</td><td>Offshore galley operations, accommodation management, provisioning and cold chain</td><td>Certified catering crews, modular galleys</td><td><span class="tag tag-accent">ISO 22000</span></td></tr>
+          <tr><td style="font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--color-accent-700)">07</td><td style="font-family:var(--font-heading);font-weight:600;font-size:16px">Civil engineering</td><td>Tank farms, process buildings, bunds, deep foundations, structural steel erection</td><td>Batching plants, formwork systems</td><td><span class="tag tag-accent">Eurocode</span></td></tr>
+          <tr><td style="font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--color-accent-700)">08</td><td style="font-family:var(--font-heading);font-weight:600;font-size:16px">Roads &amp; earthworks</td><td>Highways, terminal access roads, drainage, culverts, bridge approaches</td><td>Graders, pavers, compaction fleet</td><td><span class="tag tag-accent">AASHTO</span></td></tr>
+          <tr><td style="font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--color-accent-700)">09</td><td style="font-family:var(--font-heading);font-weight:600;font-size:16px">Equipment leasing</td><td>Bare and operated hire of earthmoving, lifting and compaction plant, with maintenance, fuel and operator supply</td><td>Excavators, dozers, tippers, rollers, forklifts, crawler cranes</td><td><span class="tag tag-accent">ISO 55001</span></td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ EQUIPMENT LEASING · flagship service ════════════════════════ -->
+  <section id="leasing" data-screen-label="Equipment leasing" style="padding:104px 32px 96px;border-top:1px solid var(--color-divider)">
+    <div style="max-width:1320px;margin:0 auto">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:32px;margin-bottom:40px;flex-wrap:wrap">
+        <div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+            <span style="width:26px;height:1px;background:var(--color-accent)"></span>
+            <span style="font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-accent-700)">Flagship service · plant hire</span>
+          </div>
+          <h2 style="font-size:46px;line-height:1.02;margin:0;max-width:19ch">Owned plant, on hire — bare or operated.</h2>
+        </div>
+        <p style="font-size:14px;line-height:1.6;max-width:38ch;margin:0;color:color-mix(in srgb,var(--color-text) 65%,transparent);text-wrap:pretty">One yard, one maintenance regime, one contract. The same fleet that builds our own jetties and roads goes out on hire, with servicing, fuel and certified operators included on request.</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:22px;margin-bottom:40px">
+        <div class="card blueprint"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <div class="card-kicker">Earthmoving</div><div class="card-title">Excavators &amp; dozers</div>
+          <div class="card-body">13–45 t tracked excavators, D6–D8 class bulldozers, wheeled loaders.</div>
+          <div class="card-meta">24 units · bare or operated</div>
+        </div>
+        <div class="card blueprint"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <div class="card-kicker">Haulage</div><div class="card-title">Tipper trucks</div>
+          <div class="card-body">10–30 m³ rigid and articulated tippers, water bowsers and low-loaders.</div>
+          <div class="card-meta">31 units · daily or monthly</div>
+        </div>
+        <div class="card blueprint"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <div class="card-kicker">Compaction</div><div class="card-title">Rollers &amp; compactors</div>
+          <div class="card-body">Single and double-drum vibratory rollers, pneumatic tyred and plate compactors.</div>
+          <div class="card-meta">18 units · pavement-certified</div>
+        </div>
+        <div class="card blueprint"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <div class="card-kicker">Lifting</div><div class="card-title">Cranes &amp; forklifts</div>
+          <div class="card-body">Crawler cranes to 250 t, mobile cranes, 3–16 t forklifts and telehandlers.</div>
+          <div class="card-meta">LOLER-inspected · operator supplied</div>
+        </div>
+      </div>
+
+      <div class="blueprint" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px 32px;padding:24px 28px;background:var(--color-accent-900);border-color:color-mix(in srgb,var(--color-bg) 34%,transparent);color:var(--color-bg)">
+        <i class="corner tl" style="color:color-mix(in srgb,var(--color-bg) 60%,transparent)"></i><i class="corner tr" style="color:color-mix(in srgb,var(--color-bg) 60%,transparent)"></i><i class="corner bl" style="color:color-mix(in srgb,var(--color-bg) 60%,transparent)"></i><i class="corner br" style="color:color-mix(in srgb,var(--color-bg) 60%,transparent)"></i>
+        <div style="display:flex;flex-wrap:wrap;gap:36px">
+          <div><div style="font-family:var(--font-heading);font-size:30px;line-height:1">96</div><div style="font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:color-mix(in srgb,var(--color-bg) 66%,transparent);margin-top:4px">Units in fleet</div></div>
+          <div><div style="font-family:var(--font-heading);font-size:30px;line-height:1">94%</div><div style="font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:color-mix(in srgb,var(--color-bg) 66%,transparent);margin-top:4px">Availability</div></div>
+          <div><div style="font-family:var(--font-heading);font-size:30px;line-height:1">48h</div><div style="font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:color-mix(in srgb,var(--color-bg) 66%,transparent);margin-top:4px">Mobilisation</div></div>
+        </div>
+        <a class="btn btn-primary" href="#contact" style="text-decoration:none">Request a hire rate</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ TRACK RECORD ════════════════════════════════════════════════ -->
+  <section id="record" data-screen-label="Track record" style="padding:96px 32px;background:var(--color-accent-900);color:var(--color-bg)">
+    <div style="max-width:1320px;margin:0 auto">
+      <div style="font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:color-mix(in srgb,var(--color-bg) 62%,transparent);margin-bottom:10px">Track record</div>
+      <h2 style="font-size:46px;line-height:1.02;margin:0 0 40px;max-width:20ch;color:var(--color-bg)">Delivered, commissioned and handed over.</h2>
+      <div data-gs-cols style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:26px">
+        <figure class="blueprint" style="border-color:color-mix(in srgb,var(--color-bg) 30%,transparent);padding:0">
+          <i class="corner tl" style="color:color-mix(in srgb,var(--color-bg) 60%,transparent)"></i><i class="corner tr" style="color:color-mix(in srgb,var(--color-bg) 60%,transparent)"></i><i class="corner bl" style="color:color-mix(in srgb,var(--color-bg) 60%,transparent)"></i><i class="corner br" style="color:color-mix(in srgb,var(--color-bg) 60%,transparent)"></i>
+          <div class="duotone" style="height:220px"><image-slot id="gs-proj-1" shape="rect" placeholder="LPG import jetty — site photo"></image-slot></div>
+          <figcaption style="padding:16px 18px 18px;color:var(--color-bg)">
+            <div style="font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:0.14em;color:color-mix(in srgb,var(--color-bg) 60%,transparent);margin-bottom:6px">PROJECT 147 · 2022–2024</div>
+            <div style="font-family:var(--font-heading);font-weight:600;font-size:20px;line-height:1.15;margin-bottom:6px">LPG import jetty &amp; approach channel</div>
+            <div style="font-size:13px;line-height:1.5;color:color-mix(in srgb,var(--color-bg) 74%,transparent)">240 m piled jetty, two berthing dolphins, 1.9 Mm³ capital dredging to −11.5 m CD.</div>
+          </figcaption>
+        </figure>
+        <figure class="blueprint" style="border-color:color-mix(in srgb,var(--color-bg) 30%,transparent);padding:0">
+          <i class="corner tl" style="color:color-mix(in srgb,var(--color-bg) 60%,transparent)"></i><i class="corner tr" style="color:color-mix(in srgb,var(--color-bg) 60%,transparent)"></i><i class="corner bl" style="color:color-mix(in srgb,var(--color-bg) 60%,transparent)"></i><i class="corner br" style="color:color-mix(in srgb,var(--color-bg) 60%,transparent)"></i>
+          <div class="duotone" style="height:220px"><image-slot id="gs-proj-2" shape="rect" placeholder="Terminal access road — site photo"></image-slot></div>
+          <figcaption style="padding:16px 18px 18px;color:var(--color-bg)">
+            <div style="font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:0.14em;color:color-mix(in srgb,var(--color-bg) 60%,transparent);margin-bottom:6px">PROJECT 162 · 2023–2025</div>
+            <div style="font-family:var(--font-heading);font-weight:600;font-size:20px;line-height:1.15;margin-bottom:6px">Terminal access corridor, 38 km</div>
+            <div style="font-size:13px;line-height:1.5;color:color-mix(in srgb,var(--color-bg) 74%,transparent)">Dual-carriageway access road, 11 culverts and two bridge approaches, delivered nine weeks early.</div>
+          </figcaption>
+        </figure>
+        <figure class="blueprint" style="border-color:color-mix(in srgb,var(--color-bg) 30%,transparent);padding:0">
+          <i class="corner tl" style="color:color-mix(in srgb,var(--color-bg) 60%,transparent)"></i><i class="corner tr" style="color:color-mix(in srgb,var(--color-bg) 60%,transparent)"></i><i class="corner bl" style="color:color-mix(in srgb,var(--color-bg) 60%,transparent)"></i><i class="corner br" style="color:color-mix(in srgb,var(--color-bg) 60%,transparent)"></i>
+          <div class="duotone" style="height:220px"><image-slot id="gs-proj-3" shape="rect" placeholder="Tank farm construction — site photo"></image-slot></div>
+          <figcaption style="padding:16px 18px 18px;color:var(--color-bg)">
+            <div style="font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:0.14em;color:color-mix(in srgb,var(--color-bg) 60%,transparent);margin-bottom:6px">PROJECT 171 · 2024–</div>
+            <div style="font-family:var(--font-heading);font-weight:600;font-size:20px;line-height:1.15;margin-bottom:6px">Coastal tank farm, 62,000 m³</div>
+            <div style="font-size:13px;line-height:1.5;color:color-mix(in srgb,var(--color-bg) 74%,transparent)">Four storage tanks, bunding, pump house and pipe rack, with marine loading tie-in.</div>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ ASSURANCE ═══════════════════════════════════════════════════ -->
+  <section id="assurance" data-screen-label="Assurance" style="padding:96px 32px">
+    <div style="max-width:1320px;margin:0 auto">
+      <div data-gs-cols style="display:grid;grid-template-columns:0.9fr 1.1fr;gap:64px;align-items:start">
+        <div>
+          <div style="font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:10px">Assurance</div>
+          <h2 style="font-size:46px;line-height:1.02;margin:0 0 16px">Accredited, audited, insured.</h2>
+          <p style="font-size:15px;line-height:1.6;margin:0 0 24px;color:color-mix(in srgb,var(--color-text) 72%,transparent);text-wrap:pretty">Certificates, class records, insurance schedules and audited accounts are supplied on request and refreshed annually. Third-party audit reports are available under NDA to shortlisted tenderers.</p>
+          <a class="btn btn-secondary" href="#contact" style="text-decoration:none;padding:11px 20px;font-size:15px">Request the compliance pack</a>
+        </div>
+        <div>
+          <div data-gs-cols2 style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--color-divider);border:1px solid var(--color-divider)">
+            <div style="background:var(--color-bg);padding:18px 16px"><div style="font-family:var(--font-heading);font-weight:600;font-size:17px">ISO 9001:2015</div><div style="font-size:11.5px;color:color-mix(in srgb,var(--color-text) 55%,transparent)">Quality management</div></div>
+            <div style="background:var(--color-bg);padding:18px 16px"><div style="font-family:var(--font-heading);font-weight:600;font-size:17px">ISO 14001:2015</div><div style="font-size:11.5px;color:color-mix(in srgb,var(--color-text) 55%,transparent)">Environmental</div></div>
+            <div style="background:var(--color-bg);padding:18px 16px"><div style="font-family:var(--font-heading);font-weight:600;font-size:17px">ISO 45001:2018</div><div style="font-size:11.5px;color:color-mix(in srgb,var(--color-text) 55%,transparent)">Occupational H&amp;S</div></div>
+            <div style="background:var(--color-bg);padding:18px 16px"><div style="font-family:var(--font-heading);font-weight:600;font-size:17px">ISM Code DOC</div><div style="font-size:11.5px;color:color-mix(in srgb,var(--color-text) 55%,transparent)">Safety management</div></div>
+            <div style="background:var(--color-bg);padding:18px 16px"><div style="font-family:var(--font-heading);font-weight:600;font-size:17px">ISPS Code</div><div style="font-size:11.5px;color:color-mix(in srgb,var(--color-text) 55%,transparent)">Ship &amp; port security</div></div>
+            <div style="background:var(--color-bg);padding:18px 16px"><div style="font-family:var(--font-heading);font-weight:600;font-size:17px">ISO 22000</div><div style="font-size:11.5px;color:color-mix(in srgb,var(--color-text) 55%,transparent)">Food safety</div></div>
+            <div style="background:var(--color-bg);padding:18px 16px"><div style="font-family:var(--font-heading);font-weight:600;font-size:17px">IMCA</div><div style="font-size:11.5px;color:color-mix(in srgb,var(--color-text) 55%,transparent)">Contractor member</div></div>
+            <div style="background:var(--color-bg);padding:18px 16px"><div style="font-family:var(--font-heading);font-weight:600;font-size:17px">NIMASA</div><div style="font-size:11.5px;color:color-mix(in srgb,var(--color-text) 55%,transparent)">Cabotage licence</div></div>
+            <div style="background:var(--color-bg);padding:18px 16px"><div style="font-family:var(--font-heading);font-weight:600;font-size:17px">NUPRC</div><div style="font-size:11.5px;color:color-mix(in srgb,var(--color-text) 55%,transparent)">Upstream permit</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:72px">
+        <div style="font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:color-mix(in srgb,var(--color-text) 50%,transparent);margin-bottom:18px">Selected clients &amp; principals</div>
+        <div data-gs-cols2 style="display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--color-divider);border:1px solid var(--color-divider)">
+          <div style="background:var(--color-bg);height:76px;display:grid;place-items:center;font-family:ui-monospace,Menlo,monospace;font-size:9.5px;letter-spacing:0.14em;color:color-mix(in srgb,var(--color-text) 40%,transparent)">CLIENT MARK</div>
+          <div style="background:var(--color-bg);height:76px;display:grid;place-items:center;font-family:ui-monospace,Menlo,monospace;font-size:9.5px;letter-spacing:0.14em;color:color-mix(in srgb,var(--color-text) 40%,transparent)">CLIENT MARK</div>
+          <div style="background:var(--color-bg);height:76px;display:grid;place-items:center;font-family:ui-monospace,Menlo,monospace;font-size:9.5px;letter-spacing:0.14em;color:color-mix(in srgb,var(--color-text) 40%,transparent)">CLIENT MARK</div>
+          <div style="background:var(--color-bg);height:76px;display:grid;place-items:center;font-family:ui-monospace,Menlo,monospace;font-size:9.5px;letter-spacing:0.14em;color:color-mix(in srgb,var(--color-text) 40%,transparent)">CLIENT MARK</div>
+          <div style="background:var(--color-bg);height:76px;display:grid;place-items:center;font-family:ui-monospace,Menlo,monospace;font-size:9.5px;letter-spacing:0.14em;color:color-mix(in srgb,var(--color-text) 40%,transparent)">CLIENT MARK</div>
+          <div style="background:var(--color-bg);height:76px;display:grid;place-items:center;font-family:ui-monospace,Menlo,monospace;font-size:9.5px;letter-spacing:0.14em;color:color-mix(in srgb,var(--color-text) 40%,transparent)">CLIENT MARK</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CONTACT ═════════════════════════════════════════════════════ -->
+  <section id="contact" data-screen-label="Contact" style="padding:96px 32px 104px;border-top:1px solid var(--color-divider)">
+    <div style="max-width:1320px;margin:0 auto">
+      <div data-gs-cols style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start">
+        <div>
+          <div style="font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:10px">Enquiries &amp; tenders</div>
+          <h2 style="font-size:52px;line-height:1;margin:0 0 18px;max-width:14ch">Send us the scope.</h2>
+          <p style="font-size:16px;line-height:1.6;margin:0 0 30px;max-width:44ch;color:color-mix(in srgb,var(--color-text) 72%,transparent);text-wrap:pretty">Tender documents, ITTs and prequalification questionnaires are acknowledged within one working day and answered by a named engineer.</p>
+          <div style="display:grid;gap:1px;background:var(--color-divider);border:1px solid var(--color-divider);max-width:440px">
+            <div style="background:var(--color-bg);padding:14px 16px"><div style="font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:color-mix(in srgb,var(--color-text) 50%,transparent);margin-bottom:3px">Tenders</div><div style="font-size:15px">tenders@gasstocks.com</div></div>
+            <div style="background:var(--color-bg);padding:14px 16px"><div style="font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:color-mix(in srgb,var(--color-text) 50%,transparent);margin-bottom:3px">Operations, 24 h</div><div style="font-size:15px">+00 000 000 0000</div></div>
+            <div style="background:var(--color-bg);padding:14px 16px"><div style="font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:color-mix(in srgb,var(--color-text) 50%,transparent);margin-bottom:3px">Registered office</div><div style="font-size:15px">Address line one, city, country</div></div>
+          </div>
+        </div>
+        <form class="blueprint" style="padding:28px 30px 30px" onsubmit="return false">
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+            <div class="field"><label for="gs-org">Organisation</label><input class="input" id="gs-org" type="text" placeholder="Company or agency"></div>
+            <div class="field"><label for="gs-name">Contact name</label><input class="input" id="gs-name" type="text" placeholder="Full name"></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+            <div class="field"><label for="gs-email">Email</label><input class="input" id="gs-email" type="email" placeholder="name@organisation.com"></div>
+            <div class="field"><label for="gs-ref">Tender reference</label><input class="input" id="gs-ref" type="text" placeholder="Optional"></div>
+          </div>
+          <div class="field" style="margin-bottom:16px">
+            <label for="gs-scope">Scope of enquiry</label>
+            <select class="input" id="gs-scope">
+              <option>Shipping &amp; chartering</option>
+              <option>Marine logistics</option>
+              <option>Dredging &amp; reclamation</option>
+              <option>Jetty &amp; marine construction</option>
+              <option>Marine security</option>
+              <option>Marine catering</option>
+              <option>Civil engineering</option>
+              <option>Roads &amp; earthworks</option>
+              <option>Multi-discipline / EPC</option>
+            </select>
+          </div>
+          <div class="field" style="margin-bottom:20px"><label for="gs-msg">Brief</label><textarea class="input" id="gs-msg" placeholder="Location, indicative programme, and the disciplines involved."></textarea></div>
+          <button class="btn btn-primary btn-block blueprint" type="submit" style="padding:12px 20px;font-size:15px">Submit enquiry<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer style="padding:28px 32px;border-top:1px solid var(--color-divider);display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;font-size:11.5px;color:color-mix(in srgb,var(--color-text) 52%,transparent)">
+    <span style="font-family:var(--font-heading);font-weight:600;font-size:14px;letter-spacing:0.13em;color:var(--color-text)">GASSTOCKS</span>
+    <span>Marine &amp; civil infrastructure · operating in 14 countries</span>
+    <span>© 2026 Gasstocks. All rights reserved.</span>
+  </footer>
+
+</div>
+
+</x-dc>
+</body>
+</html>

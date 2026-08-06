@@ -1,0 +1,328 @@
+/* Gasstocks homepage — page-level styles on top of the Industry design system.
+   Loaded after styles/tokens.css so the brand ramp overrides the system's. */
+
+/* Brand override: Gasstocks indigo #28166F replaces the system's steel accent.
+   The ramp keeps the design system's perceptual lightness steps, re-hued to
+   the brand so every component that reads --color-accent-* follows. */
+:root {
+  --color-accent: #28166f;
+  --color-accent-100: oklch(0.955 0.022 288);
+  --color-accent-200: oklch(0.895 0.048 288);
+  --color-accent-300: oklch(0.80 0.088 288);
+  --color-accent-400: oklch(0.66 0.140 288);
+  --color-accent-500: #28166f;
+  --color-accent-600: oklch(0.375 0.155 288);
+  --color-accent-700: oklch(0.315 0.140 288);
+  --color-accent-800: oklch(0.255 0.115 288);
+  --color-accent-900: oklch(0.195 0.088 288);
+  --color-accent-2: #28166f;
+  --color-accent-2-100: var(--color-accent-100);
+  --color-accent-2-200: var(--color-accent-200);
+  --color-accent-2-300: var(--color-accent-300);
+  --color-accent-2-500: var(--color-accent-500);
+  --color-accent-2-700: var(--color-accent-700);
+  --color-accent-2-900: var(--color-accent-900);
+}
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--color-bg); }
+a { color: var(--color-accent-700); text-decoration: none; }
+a:hover { color: var(--color-accent-900); }
+
+/* Flat mode — the single source of truth for the non-3D layout. Anything
+   that gives up on WebGL (small viewport, slow or failed three.js load, GL
+   error) just sets data-gs-flat on the root element; these rules do the rest. */
+[data-gs-flat] [data-gs-scroller] { height: auto !important; }
+[data-gs-flat] [data-gs-sticky] { position: static !important; height: auto !important; }
+[data-gs-flat] [data-gs-stage],
+[data-gs-flat] [data-gs-chrome],
+[data-gs-flat] [data-gs-3donly] { display: none !important; }
+[data-gs-flat] [data-gs-panel] {
+  position: static !important; opacity: 1 !important; transform: none !important;
+  pointer-events: auto !important; padding: 64px 32px !important;
+  border-top: 1px solid var(--color-divider);
+}
+/* first panel clears the fixed header, which is out of flow */
+[data-gs-flat] [data-gs-panel="0"] { padding-top: 132px !important; border-top: 0; }
+[data-gs-flat] [data-gs-panel] [data-gs-hit] {
+  position: static !important; pointer-events: auto !important;
+  inset: auto !important; max-width: 1320px; margin-left: auto; margin-right: auto;
+}
+/* flow layout, not the stage's centred flex box */
+[data-gs-flat] [data-gs-panel] { display: block !important; }
+[data-gs-flat] [data-gs-panel] [data-gs-hit] + [data-gs-hit] { margin-top: 44px; }
+/* the exploded-view callouts become the discipline list they describe */
+.btn {
+  height: auto !important; min-height: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  text-align: center; line-height: 1.25;
+}
+[data-gs-flat] [data-gs-labels] {
+  position: static !important; inset: auto !important; pointer-events: auto !important;
+  display: grid !important; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 10px; max-width: 1320px; margin: 0 auto; padding: 0 32px 72px;
+}
+[data-gs-flat] [data-gs-node] {
+  position: static !important; opacity: 1 !important; transform: none !important;
+  pointer-events: auto !important; white-space: normal !important;
+}
+
+@media (max-width: 860px) {
+  [data-gs-flat] [data-gs-panel] { padding: 48px 20px !important; }
+  [data-gs-flat] [data-gs-panel="0"] { padding-top: 108px !important; }
+  [data-gs-flat] [data-gs-labels] { padding: 0 20px 52px; }
+  [data-gs-wrap] { flex-wrap: wrap !important; }
+  [data-gs-wrap] p { text-align: left !important; max-width: none !important; }
+  [data-gs-cols] { grid-template-columns: 1fr !important; }
+  [data-gs-cols2] { grid-template-columns: repeat(2, 1fr) !important; }
+  [data-gs-topnav] { display: none !important; }
+  header { padding: 12px 18px !important; gap: 12px !important; }
+  [data-gs-navcta] { font-size: 12px !important; padding: 8px 12px !important; }
+}
+
+/* ══ Showcase slider ═══════════════════════════════════════════════════
+   Large image cards directly after the 3D journey. Unlike the rest of the
+   page this one carries real classes rather than inline styles: it has
+   states (current/adjacent), transitions and breakpoints, which inline
+   styles cannot express. */
+.gs-showcase {
+  padding: 96px 0 100px;
+  border-top: 1px solid var(--color-divider);
+  overflow: hidden;
+}
+.gs-showcase-head {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 32px; flex-wrap: wrap;
+  max-width: 1320px; margin: 0 auto 34px; padding: 0 32px;
+}
+.gs-showcase-kicker {
+  font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--color-accent-700); margin-bottom: 10px;
+}
+.gs-showcase-head h2 { font-size: 46px; line-height: 1.02; margin: 0; max-width: 20ch; }
+
+/* — the rail — */
+.gs-rail { position: relative; }
+.gs-viewport { overflow: hidden; padding: 14px 0; }
+.gs-track {
+  display: flex; gap: 24px;
+  padding-inline: max(32px, calc((100vw - 1320px) / 2));
+  transition: transform 620ms cubic-bezier(0.4, 0.02, 0.1, 1);
+  will-change: transform;
+}
+/* Autoplay at speed is a transform storm; a slower, softer curve reads as a
+   strobe rather than a slide, so the transition tightens to match the dwell. */
+.gs-rail[data-fast] .gs-track { transition-duration: 380ms; }
+
+.gs-card {
+  position: relative; flex: 0 0 auto;
+  width: min(76vw, 940px); height: clamp(420px, 62vh, 620px);
+  overflow: hidden;
+  border: 1px solid var(--color-divider);
+  background: var(--color-accent-900);
+  opacity: 0.44; transition: opacity 620ms ease;
+}
+.gs-card[data-current] { opacity: 1; }
+.gs-card img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover;
+  transform: scale(1.06); transition: transform 900ms ease;
+}
+.gs-card[data-current] img { transform: scale(1); }
+/* Brand wash + a bottom ramp, so the copy holds contrast over any photo. */
+.gs-card::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(to top, color-mix(in srgb, var(--color-accent-900) 92%, transparent) 0%,
+      color-mix(in srgb, var(--color-accent-900) 62%, transparent) 42%, transparent 78%),
+    linear-gradient(color-mix(in srgb, var(--color-accent-900) 26%, transparent),
+      color-mix(in srgb, var(--color-accent-900) 26%, transparent));
+}
+.gs-card-body {
+  position: absolute; inset: auto 0 0 0; z-index: 1;
+  padding: 40px clamp(28px, 4vw, 56px) clamp(30px, 4vw, 46px);
+  color: var(--color-bg);
+}
+.gs-card-index {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-bg) 74%, transparent);
+}
+.gs-card-index span:first-child { color: var(--color-accent-300); }
+.gs-card-index i { flex: none; width: 22px; height: 1px; background: currentColor; font-style: normal; }
+.gs-card h3 {
+  font-size: clamp(26px, 3.1vw, 42px); line-height: 1.06; letter-spacing: -0.02em;
+  margin: 0; max-width: 22ch; color: var(--color-bg);
+}
+.gs-card p {
+  font-size: clamp(15px, 1.5vw, 18px); line-height: 1.5;
+  margin: 12px 0 0; max-width: 46ch;
+  color: color-mix(in srgb, var(--color-bg) 84%, transparent);
+}
+.gs-card .btn { margin-top: 26px; padding: 11px 22px; font-size: 15px; }
+/* Only the card in view is reachable — a tab must not land on a card that is
+   parked off-screen. */
+.gs-card:not([data-current]) .btn { pointer-events: none; }
+
+/* — controls — */
+.gs-controls {
+  display: flex; align-items: center; gap: 16px;
+  max-width: 1320px; margin: 26px auto 0; padding: 0 32px;
+}
+.gs-arrow {
+  width: 42px; height: 42px; flex: none;
+  display: grid; place-items: center; cursor: pointer;
+  background: transparent; color: var(--color-text);
+  border: 1px solid var(--color-divider);
+}
+.gs-arrow:hover { background: color-mix(in srgb, var(--color-text) 7%, transparent); }
+.gs-arrow svg { display: block; }
+.gs-dots { display: flex; gap: 8px; margin-left: auto; }
+.gs-dot {
+  width: 34px; height: 3px; padding: 0; cursor: pointer;
+  background: color-mix(in srgb, var(--color-text) 18%, transparent);
+  border: 0;
+}
+.gs-dot[aria-current="true"] { background: var(--color-accent); }
+
+@media (max-width: 860px) {
+  .gs-showcase { padding: 64px 0 68px; }
+  .gs-showcase-head { padding: 0 20px; margin-bottom: 26px; }
+  .gs-showcase-head h2 { font-size: 34px; }
+  .gs-track { gap: 14px; padding-inline: 20px; }
+  .gs-card { width: 86vw; height: clamp(400px, 70vh, 520px); }
+  .gs-card-body { padding: 32px 22px 26px; }
+  .gs-controls { padding: 0 20px; }
+}
+
+/* An auto-advancing carousel is motion the reader did not ask for. */
+@media (prefers-reduced-motion: reduce) {
+  .gs-track, .gs-card, .gs-card img { transition: none; }
+}
+
+/* ══ About accordion ═══════════════════════════════════════════════════
+   Plain rule-divided expand/collapse list — heading left, +/- right,
+   indented body when open. No card, no shadow: this reads as a document
+   section, not a widget. */
+.gs-about {
+  padding: 96px 32px 100px;
+  border-top: 1px solid var(--color-divider);
+}
+.gs-about-inner { max-width: 1320px; margin: 0 auto; }
+.gs-about-head { margin-bottom: 44px; max-width: 62ch; }
+.gs-about-kicker {
+  font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--color-accent-700); margin-bottom: 10px;
+}
+.gs-about-head h2 { font-size: 46px; line-height: 1.02; margin: 0 0 14px; max-width: 18ch; }
+.gs-about-head p {
+  font-size: 15px; line-height: 1.6; margin: 0;
+  color: color-mix(in srgb, var(--color-text) 68%, transparent);
+}
+
+.gs-acc-item { border-top: 1px solid var(--color-divider); }
+.gs-acc-item:last-child { border-bottom: 1px solid var(--color-divider); }
+
+.gs-acc-trigger {
+  all: unset; box-sizing: border-box;
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  width: 100%; padding: 26px 4px;
+  cursor: pointer;
+}
+.gs-acc-trigger:hover .gs-acc-title { color: var(--color-accent-700); }
+.gs-acc-trigger:focus-visible { outline: 2px solid var(--color-accent); outline-offset: -2px; }
+
+.gs-acc-title {
+  font-family: var(--font-heading); font-weight: 600;
+  font-size: clamp(19px, 2.4vw, 26px); line-height: 1.1;
+  color: var(--color-text); transition: color 180ms ease;
+}
+
+/* plus/minus, drawn as two bars — the vertical one collapses on open */
+.gs-acc-icon { position: relative; flex: none; width: 18px; height: 18px; }
+.gs-acc-icon::before, .gs-acc-icon::after {
+  content: ""; position: absolute; top: 50%; left: 50%; background: var(--color-text);
+  transform: translate(-50%, -50%);
+}
+.gs-acc-icon::before { width: 100%; height: 1.5px; }
+.gs-acc-icon::after { width: 1.5px; height: 100%; transition: transform 220ms ease; }
+.gs-acc-item[data-open] .gs-acc-icon::after { transform: translate(-50%, -50%) scaleY(0); }
+
+/* height animates via the fr trick: no JS measuring, no jump on reflow */
+.gs-acc-panel {
+  display: grid; grid-template-rows: 0fr;
+  transition: grid-template-rows 320ms ease;
+}
+.gs-acc-item[data-open] .gs-acc-panel { grid-template-rows: 1fr; }
+.gs-acc-panel > div { overflow: hidden; }
+.gs-acc-body {
+  padding: 0 4px 30px 24px;
+  border-left: 2px solid var(--color-accent-300);
+  margin-left: 4px;
+}
+.gs-acc-lede {
+  font-family: var(--font-heading); font-weight: 600; font-style: italic;
+  font-size: 17px; line-height: 1.4; margin: 0 0 12px; color: var(--color-accent-800);
+}
+.gs-acc-body p {
+  font-size: 15px; line-height: 1.65; margin: 0;
+  color: color-mix(in srgb, var(--color-text) 78%, transparent);
+  max-width: 74ch;
+}
+.gs-acc-body p + p { margin-top: 14px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .gs-acc-panel, .gs-acc-icon::after { transition: none; }
+}
+
+@media (max-width: 860px) {
+  .gs-about { padding: 64px 20px 68px; }
+  .gs-about-head { margin-bottom: 32px; }
+  .gs-about-head h2 { font-size: 32px; }
+  .gs-acc-trigger { padding: 20px 2px; gap: 16px; }
+  .gs-acc-body { padding-left: 18px; }
+}
+
+/* ══ Equipment fleet slider ═══════════════════════════════════════════
+   Compact image cards for the plant-hire fleet — reuses .gs-showcase /
+   .gs-rail / .gs-track / .gs-controls, which are generic layout shells, not
+   specific to the big hero slider. Only the card itself is new: smaller,
+   grid-card typography (.card-kicker/.card-title/.card-body/.card-meta)
+   instead of the showcase's overlaid-caption treatment. */
+.gs-eq-card {
+  position: relative; flex: 0 0 auto; width: 278px;
+  display: flex; flex-direction: column;
+  border: 1px solid var(--color-divider);
+  background: var(--color-surface);
+  overflow: hidden;
+}
+.gs-eq-media { position: relative; height: 168px; overflow: hidden; background: var(--color-accent-900); }
+.gs-eq-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.gs-eq-body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.gs-eq-body .card-title { margin-top: 2px; }
+.gs-eq-body .card-body {
+  flex: 1; margin: 0;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+
+@media (max-width: 860px) {
+  .gs-eq-card { width: 72vw; }
+  .gs-eq-media { height: 148px; }
+}
+
+/* ══ Rail drag affordances ═════════════════════════════════════════════
+   pan-y is the contract with the browser: vertical gestures stay page
+   scrolling, horizontal ones are ours to handle, and the browser stops
+   waiting to see which it is — which is what made the old flick detector
+   feel unresponsive on touch. */
+.gs-viewport { touch-action: pan-y; cursor: grab; }
+.gs-rail[data-dragging] .gs-viewport { cursor: grabbing; }
+/* No transition while a finger is on it: the transform must track the
+   pointer exactly, not ease toward it. */
+.gs-rail[data-dragging] .gs-track { transition: none; }
+/* Text selection and native image drag both hijack a horizontal gesture. */
+.gs-track { user-select: none; -webkit-user-select: none; }
+.gs-card img, .gs-eq-card img { -webkit-user-drag: none; user-drag: none; }
+/* Dots for positions the rail cannot actually reach are removed, not just
+   dimmed — see lastIndex in showcase.js. */
+.gs-dot[hidden] { display: none; }

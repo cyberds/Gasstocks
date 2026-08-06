@@ -1,0 +1,47 @@
+/* App-level overrides. Loaded after tokens.css and site.css, so it wins.
+   Keep this file small — it exists so tokens.css and site.css can stay
+   re-syncable copies of the design project's files. */
+
+/* next/font/google supplies hashed family names via these two variables
+   (set in app/layout.tsx); repoint the design system's font tokens at them. */
+:root {
+  --font-body: var(--font-barlow), system-ui, sans-serif;
+  --font-heading: var(--font-barlow-condensed), system-ui, sans-serif;
+}
+
+/* ── site assistant ───────────────────────────────────────────────────────
+   The launcher shows the full "Hi there!" banner where there is room for it
+   and collapses to the mascot alone where there is not — a 340px-wide banner
+   pinned over a phone screen covers the page it is inviting you to read.
+   860px is the same breakpoint flat mode uses. */
+@media (max-width: 860px) {
+  [data-gs-chat-banner] { display: none !important; }
+  [data-gs-chat-mascot] { display: block !important; }
+}
+
+/* The panel goes full-bleed on a phone; a floating card with margins wastes
+   the little space there is. */
+@media (max-width: 520px) {
+  [data-gs-chat-panel] {
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    height: 100dvh !important;
+    border: 0 !important;
+  }
+}
+
+[data-gs-chat-launcher] { transition: transform 160ms ease; }
+[data-gs-chat-launcher]:hover { transform: translateY(-2px); }
+[data-gs-chat-panel] { animation: gs-chat-in 180ms ease-out; }
+
+@keyframes gs-chat-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-gs-chat-launcher] { transition: none; }
+  [data-gs-chat-launcher]:hover { transform: none; }
+  [data-gs-chat-panel] { animation: none; }
+}
