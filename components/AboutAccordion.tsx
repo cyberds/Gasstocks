@@ -82,8 +82,8 @@ export default function AboutAccordion() {
 
   const toggle = (i: number) =>
     setOpen((prev) => {
-      const next = new Set(prev);
-      if (!next.delete(i)) next.add(i);
+      const next = new Set<number>();
+      if (!prev.has(i)) next.add(i);
       return next;
     });
 
@@ -105,6 +105,7 @@ export default function AboutAccordion() {
               className="gs-acc-item"
               data-gs-acc-item=""
               {...(isOpen ? { 'data-open': '' } : {})}
+              onMouseEnter={() => setOpen(new Set([i]))}
             >
               <h3 style={{ margin: '0' }}>
                 <button
@@ -115,6 +116,7 @@ export default function AboutAccordion() {
                   aria-controls={panelId}
                   id={triggerId}
                   onClick={() => toggle(i)}
+                  onFocus={() => setOpen(new Set([i]))}
                 >
                   <span className="gs-acc-title">{item.title}</span>
                   <span className="gs-acc-icon" aria-hidden="true"></span>
