@@ -93,10 +93,10 @@ export default function Capability() {
                 marginBottom: '10px',
               }}
             >
-              Capability register
+              Services and support capability
             </div>
             <h2 style={{ fontSize: '46px', lineHeight: '1.02', margin: '0', maxWidth: '20ch' }}>
-              Everything we do, set out for prequalification.
+              Support services for Nigeria&apos;s upstream oil and gas industry.
             </h2>
           </div>
           <p
@@ -109,9 +109,10 @@ export default function Capability() {
               textWrap: 'pretty',
             }}
           >
-            Twenty services across marine, engineering, instrumentation and supply — delivered with
-            owned assets and directly employed supervision. Asset registers and method statements
-            are issued with the prequalification pack.
+            Gasstocks provides practical, high-quality support services for Nigeria&apos;s upstream
+            oil and gas industry — from marine logistics and offshore support to civil works,
+            instrumentation and equipment supply. The capability register below sets out the services
+            we can mobilise and deliver with direct supervision and accountable execution.
           </p>
         </div>
 

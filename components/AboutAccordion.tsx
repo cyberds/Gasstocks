@@ -30,12 +30,11 @@ const ITEMS: Item[] = [
     open: true,
     body: (
       <p>
-        Gasstocks Limited is one of the foremost indigenous company operating in Nigeria&apos;s
-        oil and gas Industry with an authorized share capital of ₦25,000,000. It commenced
-        business in the year 2008 and was established to provide quality services to
-        Nigeria&apos;s Oil and Gas industry. Gasstocks is managed by a team of highly trained
-        Nigerian and foreign professionals, with decades of corporate experience in the global
-        financial and energy sectors.
+        Gasstocks Limited is an indigenous Nigerian support services company focused on delivering
+        high-quality, efficient support services to Nigeria&apos;s upstream oil and gas industry.
+        Established in 2008, we work alongside operators and project teams to provide dependable
+        marine, engineering, instrumentation and supply support that helps keep operations moving
+        safely and on schedule.
       </p>
     ),
   },
@@ -44,12 +43,13 @@ const ITEMS: Item[] = [
     body: (
       <>
         <p className="gs-acc-lede">
-          To be the leading service provider of first choice in our market segment.
+          To be the first-choice support services partner for Nigeria&apos;s upstream oil and gas
+          industry.
         </p>
         <p>
-          Placeholder copy — to be replaced. We remain focused on functional execution with a
-          trained workforce backed by a highly professional management team, and we continually
-          raise the bar on the quality, timeliness and value of what we deliver.
+          We remain focused on functional execution with a trained workforce backed by a highly
+          professional management team, and we continually raise the bar on the quality,
+          timeliness and value of what we deliver.
         </p>
       </>
     ),
@@ -59,10 +59,14 @@ const ITEMS: Item[] = [
     body: (
       <>
         <p>
-          To provide optimized professional and efficient services that will maximize returns on client’s operations, while remaining economically sustainable and socially responsible.
+          To deliver high-quality, efficient support services to Nigeria&apos;s upstream oil and gas
+          industry, while remaining economically sustainable and socially responsible.
         </p>
         <p>
-          We are consistent in our commitment to our stakeholders, be the client, the community in which we operate or our employees. At executive level, we never cease to be challenged by the opportunities and responsibilities attendant upon our commitment to faithful service. We remain abreast of current trends, local and global, recognizing and reflecting the ever-increasing significance of information technology as a component value in our products and services.
+          We are consistent in our commitment to our stakeholders, whether that is the client, the
+          communities in which we operate, or our employees. We remain alert to evolving industry
+          needs and continue to strengthen our delivery capability through disciplined execution,
+          local capability building and responsible operations.
         </p>
       </>
     ),

@@ -143,8 +143,9 @@ export default function Assurance() {
               }}
             >
               Gasstocks operates under ISO 9001:2015 quality management, is licensed by the NUPRC
-              and registered with the NCDMB as a Category 1 Marine Vessel Operator. Certificates and
-              supporting compliance documentation are supplied on request.
+              and registered with the NCDMB as a Category 1 Marine Vessel Operator. Our role is to
+              deliver high-quality, efficient support services to Nigeria&apos;s upstream oil and gas
+              industry with accountable execution and documented compliance.
             </p>
             <a
               className="btn btn-secondary"

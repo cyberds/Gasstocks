@@ -144,7 +144,8 @@ export default function ContactPage() {
               textWrap: 'pretty',
             }}
           >
-            Reach out for enquiries, tenders, or just to learn more about our services.
+            Reach out for enquiries, tenders, or to discuss how we can support your upstream operation
+            with reliable marine, engineering and logistics services.
           </p>
         </div>
 

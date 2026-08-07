@@ -30,14 +30,15 @@ operations, engineering, instrumentation and energy supply.
 
 ## What we are trying to do
 
-To be the service provider of first choice in our market segment — through
-functional execution, a trained workforce, and a management team that holds the
-work to the quality, timeliness and value we promised.
+To deliver high-quality, efficient support services to Nigeria's upstream oil and
+gas industry — through functional execution, a trained workforce, and a
+management team that holds the work to the quality, timeliness and value we
+promised.
 
 ## The difference we make
 
 - Strengthening Nigeria's energy and marine infrastructure capacity.
-- Delivering cost-effective, compliant and innovative solutions.
+- Delivering cost-effective, compliant and innovative support services.
 - Supporting local workforce development and knowledge transfer.
 
 <!-- BEGIN GENERATED — edit lib/company.ts and lib/services.ts, then run npm run sync:company -->

@@ -171,7 +171,7 @@ export default function Journey() {
                     <span style={{ fontFamily: 'ui-monospace,Menlo,monospace', fontSize: '11px', color: 'var(--color-accent-200)' }}>06</span>
                     <span style={{ fontSize: '10.5px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'color-mix(in srgb,var(--color-bg) 72%,transparent)' }}>Capability diagram · exploded</span>
                   </div>
-                  <h2 style={{ fontSize: 'clamp(30px,4vw,44px)', lineHeight: '1.04', margin: '0' }}>Nine disciplines.<br />One contract.</h2>
+                  <h2 style={{ fontSize: 'clamp(30px,4vw,44px)', lineHeight: '1.04', margin: '0' }}>Support services across<br />the full operation.</h2>
                 </div>
               </div>
             </div>
