@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { GROUPS, SERVICES, type Group } from '../lib/services';
 
@@ -50,6 +50,24 @@ const chipOn = {
 
 export default function Capability() {
   const [filter, setFilter] = useState<Filter>('all');
+
+  useEffect(() => {
+    const handleHash = () => {
+      const hash = window.location.hash.replace('#', '');
+      const map: Record<string, Filter> = {
+        'marine-vessels': 'Marine & vessels',
+        'engineering-construction': 'Engineering & construction',
+        'instrumentation-integrity': 'Instrumentation & asset integrity',
+        'supply-equipment': 'Supply & equipment'
+      };
+      if (map[hash]) {
+        setFilter(map[hash]);
+      }
+    };
+    handleHash();
+    window.addEventListener('hashchange', handleHash);
+    return () => window.removeEventListener('hashchange', handleHash);
+  }, []);
 
   const counts = useMemo(() => {
     const c = {} as Record<Group, number>;
@@ -182,8 +200,14 @@ export default function Capability() {
             </thead>
             {visibleGroups.map((group) => {
               const rows = SERVICES.filter((s) => s.group === group);
+              const groupIds: Record<string, string> = {
+                'Marine & vessels': 'marine-vessels',
+                'Engineering & construction': 'engineering-construction',
+                'Instrumentation & asset integrity': 'instrumentation-integrity',
+                'Supply & equipment': 'supply-equipment'
+              };
               return (
-                <tbody key={group} data-gs-group={group}>
+                <tbody key={group} id={groupIds[group]} data-gs-group={group}>
                   {/* Section rule. Only earns its place when more than one
                       group is on screen; filtered to one, the chip already
                       says which. */}

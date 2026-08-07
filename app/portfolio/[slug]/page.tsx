@@ -5,7 +5,6 @@ import SiteHeader from '../../../components/SiteHeader';
 import SiteFooter from '../../../components/SiteFooter';
 import PortfolioGallery from '../../../components/PortfolioGallery';
 import ContactButton from '../../../components/ContactButton';
-import Chatbot from '../../../components/Chatbot';
 
 export default async function PortfolioDetailPage(props: { params: Promise<{ slug: string }> }) {
   const params = await props.params;
@@ -57,7 +56,6 @@ export default async function PortfolioDetailPage(props: { params: Promise<{ slu
       </main>
       
       <ContactButton />
-      <Chatbot />
       
       <SiteFooter />
     </div>

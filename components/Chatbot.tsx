@@ -258,7 +258,7 @@ export default function Chatbot() {
             bottom: 'clamp(0px, 2vw, 24px)',
             zIndex: 70,
             width: 'min(400px, 100vw)',
-            height: 'min(600px, 100dvh)',
+            height: 'min(600px, calc(100dvh - 100px))',
             display: 'flex',
             flexDirection: 'column',
             background: 'var(--color-bg)',
@@ -410,6 +410,19 @@ export default function Chatbot() {
           </form>
         </div>
       )}
+      <style>{`
+        @media (max-width: 600px) {
+          [data-gs-chat-panel] {
+            top: 72px !important;
+            bottom: 12px !important;
+            left: 12px !important;
+            right: 12px !important;
+            width: auto !important;
+            height: auto !important;
+            max-height: calc(100dvh - 84px) !important;
+          }
+        }
+      `}</style>
     </>
   );
 }

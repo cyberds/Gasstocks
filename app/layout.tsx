@@ -63,6 +63,8 @@ const FLAT_MODE = `(function () {
   }, 9000);
 })();`;
 
+import Chatbot from '../components/Chatbot';
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     // suppressHydrationWarning: the flat-mode script below runs before
@@ -77,7 +79,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <script dangerouslySetInnerHTML={{ __html: FLAT_MODE }} />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Chatbot />
+      </body>
     </html>
   );
 }

@@ -8,7 +8,6 @@ import LeasingRail from '../components/LeasingRail';
 import Assurance from '../components/Assurance';
 import ContactForm from '../components/ContactForm';
 import SiteFooter from '../components/SiteFooter';
-import Chatbot from '../components/Chatbot';
 import PortfolioSlider from '../components/PortfolioSlider';
 
 export default function Home() {
@@ -33,9 +32,6 @@ export default function Home() {
       <Assurance />
       <ContactForm />
       <SiteFooter />
-      {/* Outside every scroller and rail, so it can never interfere with the
-          3D scene's scroll capture or the rails' touch-action contract. */}
-      <Chatbot />
     </div>
   );
 }
