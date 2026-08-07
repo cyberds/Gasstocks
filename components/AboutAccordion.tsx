@@ -31,7 +31,7 @@ const ITEMS: Item[] = [
     body: (
       <p>
         Gasstocks Limited is one of the foremost indigenous company operating in Nigeria&apos;s
-        oil and gas Industry with an authorized share capital of N25,000,000. It commenced
+        oil and gas Industry with an authorized share capital of ₦25,000,000. It commenced
         business in the year 2008 and was established to provide quality services to
         Nigeria&apos;s Oil and Gas industry. Gasstocks is managed by a team of highly trained
         Nigerian and foreign professionals, with decades of corporate experience in the global
@@ -57,20 +57,36 @@ const ITEMS: Item[] = [
   {
     title: 'Our purpose',
     body: (
-      <p>
-        Placeholder copy — to be replaced. Our purpose is to connect vessel to shore safely, on
-        schedule and to specification, so the clients we serve can operate with confidence in
-        every jurisdiction we work.
-      </p>
+      <>
+        <p>
+          To provide optimized professional and efficient services that will maximize returns on client’s operations, while remaining economically sustainable and socially responsible.
+        </p>
+        <p>
+          We are consistent in our commitment to our stakeholders, be the client, the community in which we operate or our employees. At executive level, we never cease to be challenged by the opportunities and responsibilities attendant upon our commitment to faithful service. We remain abreast of current trends, local and global, recognizing and reflecting the ever-increasing significance of information technology as a component value in our products and services.
+        </p>
+      </>
     ),
   },
   {
     title: 'Our values',
     body: (
-      <p>
-        Placeholder copy — to be replaced. Safety, integrity and accountability govern every
-        contract we take on, from the first site survey to final handover.
-      </p>
+      <>
+        <p>
+          <b>Compliance and accountability</b> — deliver work that meets ISO, NUPRC, NCDMB and industry standards, with transparent, evidence-backed execution.
+        </p>
+        <p>
+          <b>Quality and timeliness</b> — execute contracts to specification and on schedule, with a focus on functional delivery and right-first-time performance.
+        </p>
+        <p>
+          <b>Integrity and professionalism</b> — act with honesty, fairness and respect, and maintain the highest standards of professional conduct.
+        </p>
+        <p>
+          <b>Safety and sustainability</b> — protect people, assets and the environment, and operate in a way that is socially responsible and economically sustainable.
+        </p>
+        <p>
+          <b>Local capability and sustainability</b> — build local workforce capacity, support knowledge transfer, and offer solutions that are economically sustainable and socially responsible.
+        </p>
+      </>
     ),
   },
 ];
