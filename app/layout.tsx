@@ -4,6 +4,7 @@ import { Barlow, Barlow_Condensed } from 'next/font/google';
 import '../styles/tokens.css';
 import '../styles/site.css';
 import '../styles/app.css';
+import '../styles/portfolio.css';
 
 const barlow = Barlow({
   subsets: ['latin'],
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
   title: 'Gasstocks Limited — marine & civil infrastructure contractor',
   description:
     'Nine disciplines under one contract: shipping, dredging, marine construction, civil engineering and plant hire — one accountable party from the anchorage to the last kilometre of road.',
-  icons: { icon: '/assets/logo-3d.png' },
+  icons: { icon: '/assets/favicon.png' },
 };
 
 export const viewport: Viewport = {

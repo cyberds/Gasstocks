@@ -4,11 +4,12 @@ import ShowcaseRail from '../components/ShowcaseRail';
 import AboutAccordion from '../components/AboutAccordion';
 import Capability from '../components/Capability';
 import LeasingRail from '../components/LeasingRail';
-import TrackRecord from '../components/TrackRecord';
+
 import Assurance from '../components/Assurance';
 import ContactForm from '../components/ContactForm';
 import SiteFooter from '../components/SiteFooter';
 import Chatbot from '../components/Chatbot';
+import PortfolioSlider from '../components/PortfolioSlider';
 
 export default function Home() {
   return (
@@ -28,7 +29,7 @@ export default function Home() {
       <AboutAccordion />
       <Capability />
       <LeasingRail />
-      <TrackRecord />
+      <PortfolioSlider />
       <Assurance />
       <ContactForm />
       <SiteFooter />

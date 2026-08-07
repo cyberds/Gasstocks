@@ -16,6 +16,7 @@ export default function SiteHeader() {
             <a href="#capability" style={{ color: 'inherit' }}>Capability</a>
             <a href="#record" style={{ color: 'inherit' }}>Track record</a>
             <a href="#assurance" style={{ color: 'inherit' }}>Assurance</a>
+            <a href="/portfolio" style={{ color: 'inherit' }}>Portfolio</a>
             <a href="/contact" style={{ color: 'inherit' }}>Contact</a>
           </nav>
           <a className="btn btn-primary blueprint" data-gs-navcta="" href="#contact" style={{ textDecoration: 'none' }}>

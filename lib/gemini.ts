@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 import { COMPANY, DISPLAY } from './company';
+import { PORTFOLIOS } from './portfolio';
 
 /* Gemini plumbing for the site assistant. Server-only: importing this from a
  * client component is a build error, which is the cheapest possible guarantee
@@ -105,9 +106,12 @@ each marker into a button. Use them when they genuinely help; a simple factual
 answer needs no buttons.`;
 }
 
-/** The stable, cacheable prefix: instructions + document. Never varies. */
 export function stablePrefix(): string {
-  return `${systemPreamble()}\n\n=== COMPANY DOCUMENT ===\n${companyDoc()}\n=== END COMPANY DOCUMENT ===`;
+  const portfoliosText = PORTFOLIOS.map(p => 
+    `- ${p.title} (${p.date}, ${p.location}, Client: ${p.client})\n  Category: ${p.serviceCategory}\n  Description: ${p.description}`
+  ).join('\n\n');
+
+  return `${systemPreamble()}\n\n=== COMPANY DOCUMENT ===\n${companyDoc()}\n\n=== PAST PROJECTS & PORTFOLIO ===\n${portfoliosText}\n=== END COMPANY DOCUMENT ===`;
 }
 
 export type Turn = { role: 'user' | 'model'; text: string };
