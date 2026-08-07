@@ -46,18 +46,30 @@ export default function Assurance() {
       <style>{`
         .marquee-container {
           display: flex;
-          overflow: hidden;
+          overflow-x: auto;
+          overflow-y: hidden;
           width: 100%;
           position: relative;
           padding: 20px 0;
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+          -webkit-overflow-scrolling: touch;
+          overscroll-behavior-x: contain;
+          touch-action: pan-x;
+          cursor: grab;
+          user-select: none;
           mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
           -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+        .marquee-container::-webkit-scrollbar {
+          display: none;
         }
         .marquee-content {
           display: flex;
           gap: 16px;
-          min-width: 100%;
-          animation: marquee 30s linear infinite;
+          min-width: max-content;
+          flex-shrink: 0;
+          animation: marquee 18s linear infinite;
         }
         .marquee-content.reverse {
           animation: marquee-reverse 35s linear infinite;
@@ -155,9 +167,9 @@ export default function Assurance() {
                     {a.logo && (
                       <div style={{ display: 'flex', gap: '12px', alignItems: 'center', height: '40px' }}>
                         {/* @ts-ignore */}
-                        <img src={a.logo} alt={a.headline} style={{ maxHeight: '100%', maxWidth: '80px', objectFit: 'contain' }} />
+                        <img src={a.logo} alt={a.headline} style={{ maxHeight: '100%', maxWidth: '110px', objectFit: 'contain' }} />
                         {/* @ts-ignore */}
-                        {a.logo2 && <img src={a.logo2} alt={a.headline} style={{ maxHeight: '100%', maxWidth: '80px', objectFit: 'contain' }} />}
+                        {a.logo2 && <img src={a.logo2} alt={a.headline} style={{ maxHeight: '100%', maxWidth: '110px', objectFit: 'contain' }} />}
                       </div>
                     )}
                   </div>

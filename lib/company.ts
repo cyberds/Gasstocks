@@ -96,7 +96,7 @@ export const links = {
    Deliberately NOT represented in this file, so nothing here can launder them
    into the chatbot. Still awaiting the client:
 
-   - Footer: "operating in 14 countries" (profile lists three offices, in
+   - Footer: "operating since 2008" (profile lists three offices, in
      Nigeria and the USA).
    - Hero stat strip: "184 projects delivered" (profile gives no project count).
    - Equipment rail: "24 units / 31 units / 96 units / 94% / 48h" fleet and

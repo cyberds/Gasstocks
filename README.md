@@ -179,7 +179,7 @@ Deliberately absent from `lib/company.ts` so they cannot reach the chatbot, but
 
 | Where | Claim |
 | --- | --- |
-| Footer | "operating in 14 countries" — the profile lists three offices in two countries |
+| Footer | "operating since 2008" — the profile lists three offices in two countries |
 | Hero stats | "184 projects delivered" — no project count in the profile |
 | Equipment rail | "24 / 31 / 96 units", "94% availability", "48h mobilisation" |
 | 3D journey panels 3 & 4 | "Design code — BS 6349 · Eurocode", "Piling — tubular to 1,220 mm", "Roads built — 610 km cumulative", "Standard — AASHTO · ISO 9001" |

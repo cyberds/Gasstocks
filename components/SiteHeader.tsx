@@ -6,7 +6,7 @@ export default function SiteHeader() {
   return (
     <>
       <header style={{ position: 'fixed', top: '0', left: '0', right: '0', zIndex: '60', display: 'flex', alignItems: 'center', gap: '28px', padding: '14px 32px', background: 'color-mix(in srgb, var(--color-bg) 84%, transparent)', backdropFilter: 'blur(8px)', borderBottom: '1px solid var(--color-divider)' }}>
-          <a href="#top" style={{ display: 'flex', alignItems: 'baseline', gap: '9px', marginRight: 'auto', textDecoration: 'none', color: 'inherit' }}>
+          <a href="/" style={{ display: 'flex', alignItems: 'baseline', gap: '9px', marginRight: 'auto', textDecoration: 'none', color: 'inherit' }}>
             <img src="/assets/logo-3d.png" alt="Gasstocks Limited" style={{ height: '34px', width: 'auto', display: 'block' }} />
             <span style={{ fontSize: '9px', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'color-mix(in srgb,var(--color-text) 48%,transparent)' }}>RC359117</span>
           </a>
@@ -16,7 +16,7 @@ export default function SiteHeader() {
             <a href="#capability" style={{ color: 'inherit' }}>Capability</a>
             <a href="#record" style={{ color: 'inherit' }}>Track record</a>
             <a href="#assurance" style={{ color: 'inherit' }}>Assurance</a>
-            <a href="#contact" style={{ color: 'inherit' }}>Contact</a>
+            <a href="/contact" style={{ color: 'inherit' }}>Contact</a>
           </nav>
           <a className="btn btn-primary blueprint" data-gs-navcta="" href="#contact" style={{ textDecoration: 'none' }}>
             Request capability statement

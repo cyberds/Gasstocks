@@ -10,9 +10,12 @@
     "sync:company": "node tools/sync-company-doc.mjs"
   },
   "dependencies": {
+    "@types/leaflet": "^1.9.22",
+    "leaflet": "^1.9.4",
     "next": "^15.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-leaflet": "^5.0.0",
     "resend": "^6.18.1",
     "server-only": "^0.0.1",
     "zod": "^4.4.3"
