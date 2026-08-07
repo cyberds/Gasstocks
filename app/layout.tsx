@@ -21,10 +21,83 @@ const barlowCondensed = Barlow_Condensed({
 });
 
 export const metadata: Metadata = {
-  title: 'Gasstocks Limited — marine & civil infrastructure contractor',
+  title: {
+    template: '%s | Gasstocks Limited',
+    default: 'Gasstocks Limited | Marine & Civil Infrastructure Contractor',
+  },
   description:
-    'Nine disciplines under one contract: shipping, dredging, marine construction, civil engineering and plant hire — one accountable party from the anchorage to the last kilometre of road.',
+    'Gasstocks is a premier marine and civil infrastructure contractor operating in Nigeria since 2008. We provide dredging, shipping, marine construction, civil engineering, and plant hire services.',
+  keywords: [
+    'marine contractor',
+    'civil engineering',
+    'dredging services',
+    'shipping',
+    'marine construction',
+    'plant hire',
+    'Nigeria',
+    'Gasstocks Limited',
+    'oil and gas infrastructure',
+  ],
+  authors: [{ name: 'Gasstocks Limited' }],
+  creator: 'Gasstocks Limited',
+  publisher: 'Gasstocks Limited',
+  metadataBase: new URL('https://gasstocks.com'), // Replace with actual domain when available
+  openGraph: {
+    title: 'Gasstocks Limited | Marine & Civil Infrastructure Contractor',
+    description: 'Premier marine and civil infrastructure contractor operating since 2008. Nine disciplines under one contract.',
+    url: 'https://gasstocks.com',
+    siteName: 'Gasstocks Limited',
+    images: [
+      {
+        url: '/assets/og-image.jpg', // Ensure this exists or fallback to a standard image
+        width: 1200,
+        height: 630,
+        alt: 'Gasstocks Limited - Marine & Civil Infrastructure',
+      },
+    ],
+    locale: 'en_NG',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Gasstocks Limited',
+    description: 'Premier marine and civil infrastructure contractor operating since 2008.',
+    creator: '@gasstocks',
+    images: ['/assets/og-image.jpg'],
+  },
   icons: { icon: '/assets/favicon.png' },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+};
+
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Gasstocks Limited",
+  "url": "https://gasstocks.com",
+  "logo": "https://gasstocks.com/assets/favicon.png",
+  "foundingDate": "2008",
+  "description": "Gasstocks is a premier marine and civil infrastructure contractor operating in Nigeria since 2008, offering services such as dredging, marine construction, and civil engineering.",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+2348000000000",
+    "contactType": "customer service",
+    "areaServed": "NG",
+    "availableLanguage": "en"
+  },
+  "sameAs": [
+    "https://www.linkedin.com/company/gasstocks",
+    "https://twitter.com/gasstocks"
+  ]
 };
 
 export const viewport: Viewport = {
@@ -78,6 +151,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: FLAT_MODE }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
+        />
       </head>
       <body>
         {children}

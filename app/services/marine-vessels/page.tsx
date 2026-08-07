@@ -8,6 +8,29 @@ export const metadata = {
   title: 'Marine & Vessels Services | Gasstocks Limited',
   description: 'Offshore supply logistics, vessel chartering (AHTSVs, PSVs, tugs, barges), ship management, marine security escort, and offshore catering in Nigeria.',
   keywords: ['Vessel Charter Nigeria', 'Offshore Logistics', 'Marine Security Escort', 'Ship Management', 'AHTSV Hire', 'Houseboat Catering'],
+  alternates: {
+    canonical: '/services/marine-vessels',
+  }
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Marine & Vessels Services",
+  "provider": {
+    "@type": "Organization",
+    "name": "Gasstocks Limited"
+  },
+  "areaServed": "Nigeria",
+  "description": "Offshore supply logistics, vessel chartering, ship management, marine security escort, and offshore catering.",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Marine & Vessels Services",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Vessel Chartering" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Offshore Logistics" } }
+    ]
+  }
 };
 
 export default function MarineVesselsPage() {
@@ -16,6 +39,10 @@ export default function MarineVesselsPage() {
   return (
     <div style={{ fontFamily: 'var(--font-body)', color: 'var(--color-text)', background: 'var(--color-bg)', minHeight: '100vh' }}>
       <SiteHeader />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
 
       <main style={{ paddingTop: '80px' }}>
         {/* Category Hero */}

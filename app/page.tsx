@@ -9,6 +9,27 @@ import Assurance from '../components/Assurance';
 import ContactForm from '../components/ContactForm';
 import SiteFooter from '../components/SiteFooter';
 import PortfolioSlider from '../components/PortfolioSlider';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Gasstocks Limited | Marine & Civil Infrastructure Contractor',
+  description: 'Gasstocks is a premier marine and civil infrastructure contractor operating in Nigeria since 2008. We provide dredging, shipping, marine construction, civil engineering, and plant hire services.',
+  alternates: {
+    canonical: '/',
+  }
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Gasstocks Limited",
+  "url": "https://gasstocks.com",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://gasstocks.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+};
 
 export default function Home() {
   return (
@@ -23,6 +44,10 @@ export default function Home() {
       }}
     >
       <SiteHeader />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+      />
       <Journey />
       <ShowcaseRail />
       <AboutAccordion />

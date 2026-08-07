@@ -8,6 +8,29 @@ export const metadata = {
   title: 'Supply & Equipment Hire | Gasstocks Limited',
   description: 'Heavy equipment plant hire (excavators, tippers, cranes), oilfield valves and materials, industrial gases, LPG, and technical manpower logistics.',
   keywords: ['Plant Hire Nigeria', 'Excavator Hire', 'Oilfield Equipment Supply', 'LPG Distribution', 'Technical Manpower Logistics'],
+  alternates: {
+    canonical: '/services/supply-equipment',
+  }
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Supply & Equipment Hire",
+  "provider": {
+    "@type": "Organization",
+    "name": "Gasstocks Limited"
+  },
+  "areaServed": "Nigeria",
+  "description": "Heavy equipment plant hire, oilfield valves and materials, industrial gases, LPG, and technical manpower logistics.",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Supply & Equipment Services",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Heavy Equipment Hire" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Oilfield Equipment Supply" } }
+    ]
+  }
 };
 
 export default function SupplyEquipmentPage() {
@@ -16,6 +39,10 @@ export default function SupplyEquipmentPage() {
   return (
     <div style={{ fontFamily: 'var(--font-body)', color: 'var(--color-text)', background: 'var(--color-bg)', minHeight: '100vh' }}>
       <SiteHeader />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
 
       <main style={{ paddingTop: '80px' }}>
         {/* Category Hero */}

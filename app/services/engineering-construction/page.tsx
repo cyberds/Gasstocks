@@ -8,6 +8,29 @@ export const metadata = {
   title: 'Engineering & Construction Services | Gasstocks Limited',
   description: 'Pipeline construction, piled jetties, dredging, land reclamation, steel fabrication, boatbuilding, roads, and EPCM engineering in Nigeria.',
   keywords: ['Pipeline Construction Nigeria', 'Dredging Services', 'Piled Jetties', 'Steel Fabrication', 'Land Reclamation', 'Civil Engineering EPCM'],
+  alternates: {
+    canonical: '/services/engineering-construction',
+  }
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Engineering & Construction",
+  "provider": {
+    "@type": "Organization",
+    "name": "Gasstocks Limited"
+  },
+  "areaServed": "Nigeria",
+  "description": "Pipeline construction, piled jetties, dredging, land reclamation, steel fabrication, boatbuilding, roads, and EPCM engineering in Nigeria.",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Engineering & Construction Services",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pipeline Construction" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Dredging Services" } }
+    ]
+  }
 };
 
 export default function EngineeringConstructionPage() {
@@ -16,6 +39,10 @@ export default function EngineeringConstructionPage() {
   return (
     <div style={{ fontFamily: 'var(--font-body)', color: 'var(--color-text)', background: 'var(--color-bg)', minHeight: '100vh' }}>
       <SiteHeader />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
 
       <main style={{ paddingTop: '80px' }}>
         {/* Category Hero */}

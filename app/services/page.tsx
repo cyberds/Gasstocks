@@ -8,6 +8,40 @@ export const metadata = {
   title: 'Services & Support Capability | Gasstocks Limited',
   description: 'Explore Gasstocks Limited energy, marine, engineering, instrumentation, and equipment supply capabilities across 20 specialised service areas.',
   keywords: ['Gasstocks Services', 'Marine Logistics Nigeria', 'EPCM Engineering', 'Vessel Charter', 'Fiscal Metering', 'Oilfield Equipment Supply'],
+  alternates: {
+    canonical: '/services',
+  }
+};
+
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Marine & Vessels",
+      "url": "https://gasstocks.com/services/marine-vessels"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Engineering & Construction",
+      "url": "https://gasstocks.com/services/engineering-construction"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Instrumentation & Asset Integrity",
+      "url": "https://gasstocks.com/services/instrumentation-asset-integrity"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Supply & Equipment",
+      "url": "https://gasstocks.com/services/supply-equipment"
+    }
+  ]
 };
 
 const CATEGORIES = [
@@ -52,6 +86,10 @@ export default function ServicesPage() {
       }}
     >
       <SiteHeader />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
+      />
 
       <main style={{ paddingTop: '80px' }}>
         {/* Services Hero */}

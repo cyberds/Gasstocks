@@ -8,6 +8,29 @@ export const metadata = {
   title: 'Instrumentation & Asset Integrity | Gasstocks Limited',
   description: 'Fiscal metering, flow measurement, control systems, NUPRC calibration, certification, and plant maintenance for crude oil production facilities.',
   keywords: ['Fiscal Metering Nigeria', 'NUPRC Calibration', 'Instrumentation Control', 'Asset Integrity Maintenance', 'Plant Maintenance'],
+  alternates: {
+    canonical: '/services/instrumentation-asset-integrity',
+  }
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Instrumentation & Asset Integrity",
+  "provider": {
+    "@type": "Organization",
+    "name": "Gasstocks Limited"
+  },
+  "areaServed": "Nigeria",
+  "description": "Fiscal metering, flow measurement, control systems, NUPRC calibration, certification, and plant maintenance for crude oil production facilities.",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Instrumentation & Asset Integrity Services",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Fiscal Metering" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "NUPRC Calibration" } }
+    ]
+  }
 };
 
 export default function InstrumentationAssetIntegrityPage() {
@@ -16,6 +39,10 @@ export default function InstrumentationAssetIntegrityPage() {
   return (
     <div style={{ fontFamily: 'var(--font-body)', color: 'var(--color-text)', background: 'var(--color-bg)', minHeight: '100vh' }}>
       <SiteHeader />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
 
       <main style={{ paddingTop: '80px' }}>
         {/* Category Hero */}
