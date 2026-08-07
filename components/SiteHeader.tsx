@@ -8,7 +8,7 @@ export default function SiteHeader() {
       <header style={{ position: 'fixed', top: '0', left: '0', right: '0', zIndex: '60', display: 'flex', alignItems: 'center', gap: '28px', padding: '14px 32px', background: 'color-mix(in srgb, var(--color-bg) 84%, transparent)', backdropFilter: 'blur(8px)', borderBottom: '1px solid var(--color-divider)' }}>
           <a href="#top" style={{ display: 'flex', alignItems: 'baseline', gap: '9px', marginRight: 'auto', textDecoration: 'none', color: 'inherit' }}>
             <img src="/assets/logo-3d.png" alt="Gasstocks Limited" style={{ height: '34px', width: 'auto', display: 'block' }} />
-            <span style={{ fontSize: '9px', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'color-mix(in srgb,var(--color-text) 48%,transparent)' }}>Marine · Civil · Plant hire</span>
+            <span style={{ fontSize: '9px', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'color-mix(in srgb,var(--color-text) 48%,transparent)' }}>RC359117</span>
           </a>
           <nav data-gs-topnav="" style={{ display: 'flex', gap: '22px', fontSize: '13px', letterSpacing: '0.02em' }}>
             <a href="#about" style={{ color: 'inherit' }}>About</a>

@@ -60,11 +60,13 @@ export const COMPANY = {
     {
       headline: 'ISO 9001:2015',
       detail: 'Quality management · DQS / IQNet · cert. 40400090 QM15',
+      logo: '/assets/ISO-9001-2015-DQS-300x300.png',
+      logo2: '/assets/IQNET-300x300.png'
     },
-    { headline: 'NUPRC', detail: 'Licensed operator' },
-    { headline: 'NCDMB', detail: 'NOGIC JQS · Category 1 Marine Vessel Operator' },
-    { headline: 'IMCA', detail: 'Member contractor' },
-    { headline: 'PETAN', detail: 'Member' },
+    { headline: 'NUPRC', detail: 'Licensed operator', logo: '/assets/NUPRC-logo.png' },
+    { headline: 'NCDMB', detail: 'NOGIC JQS · Category 1 Marine Vessel Operator', logo: '/assets/NOJIC-JQS-logo.webp' },
+    { headline: 'IMCA', detail: 'Member contractor', logo: '/assets/IMCAlogo-768x284.png' },
+    { headline: 'PETAN', detail: 'Member', logo: '/assets/UPDATED-PETAN-LOGO-Transparent.webp' },
     { headline: 'RC359117', detail: 'Registered in Nigeria · 2008' },
   ],
 } as const;
