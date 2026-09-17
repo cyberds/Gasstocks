@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 import { COMPANY, DISPLAY } from './company';
-import { PORTFOLIOS } from './portfolio';
+import { getPortfolios } from './portfolio';
 
 /* Gemini plumbing for the site assistant. Server-only: importing this from a
  * client component is a build error, which is the cheapest possible guarantee
@@ -106,8 +106,14 @@ each marker into a button. Use them when they genuinely help; a simple factual
 answer needs no buttons.`;
 }
 
-export function stablePrefix(): string {
-  const portfoliosText = PORTFOLIOS.map(p => 
+export async function stablePrefix(): Promise<string> {
+  /* The assistant can still answer from the company document if the track
+     record can't be loaded, so degrade rather than fail the chat — but log it. */
+  const portfolios = await getPortfolios().catch((err) => {
+    console.error('[chat] could not load track record for the assistant', err);
+    return [];
+  });
+  const portfoliosText = portfolios.map(p => 
     `- ${p.title} (${p.date}, ${p.location}, Client: ${p.client})\n  Category: ${p.serviceCategory}\n  Description: ${p.description}`
   ).join('\n\n');
 
@@ -117,9 +123,9 @@ export function stablePrefix(): string {
 export type Turn = { role: 'user' | 'model'; text: string };
 
 /** Gemini `contents`, with the varying part strictly last. */
-export function buildContents(history: Turn[], question: string) {
+export async function buildContents(history: Turn[], question: string) {
   return [
-    { role: 'user', parts: [{ text: stablePrefix() }] },
+    { role: 'user', parts: [{ text: await stablePrefix() }] },
     { role: 'model', parts: [{ text: 'Understood. I will answer from the document.' }] },
     ...history.map((t) => ({ role: t.role, parts: [{ text: t.text }] })),
     { role: 'user', parts: [{ text: question }] },
@@ -130,7 +136,7 @@ export type Usage = { prompt: number; cached: number; output: number };
 
 /** SSE stream of text chunks, plus the usage metadata once it arrives. */
 export async function* streamGemini(
-  contents: ReturnType<typeof buildContents>,
+  contents: Awaited<ReturnType<typeof buildContents>>,
   { search = false }: { search?: boolean } = {},
 ): AsyncGenerator<{ text?: string; usage?: Usage }> {
   const key = process.env.GEMINI_API_KEY;

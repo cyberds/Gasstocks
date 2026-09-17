@@ -73,7 +73,7 @@ export async function POST(request: Request) {
 
       try {
         // ── pass 1: the document, no tools, cacheable prefix ──────────────
-        const contents = buildContents(history, message);
+        const contents = await buildContents(history, message);
         let head = '';
         let decided: 'answer' | 'web' | null = null;
 
