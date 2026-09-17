@@ -1,15 +1,23 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
-import { PORTFOLIOS } from '../../../lib/portfolio';
+import { getPortfolioBySlug, getPortfolios } from '../../../lib/portfolio';
 import SiteHeader from '../../../components/SiteHeader';
 import SiteFooter from '../../../components/SiteFooter';
 import PortfolioGallery from '../../../components/PortfolioGallery';
 import ContactButton from '../../../components/ContactButton';
 import { Metadata } from 'next';
 
+/* Existing projects are prerendered at build; ones added later in the admin
+   dashboard render on first request and are then cached like the rest. */
+export const dynamicParams = true;
+
+export async function generateStaticParams() {
+  return (await getPortfolios()).map((p) => ({ slug: p.slug }));
+}
+
 export async function generateMetadata(props: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const params = await props.params;
-  const portfolio = PORTFOLIOS.find(p => p.slug === params.slug);
+  const portfolio = await getPortfolioBySlug(params.slug);
   
   if (!portfolio) {
     return {
@@ -34,7 +42,7 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
 
 export default async function PortfolioDetailPage(props: { params: Promise<{ slug: string }> }) {
   const params = await props.params;
-  const portfolio = PORTFOLIOS.find(p => p.slug === params.slug);
+  const portfolio = await getPortfolioBySlug(params.slug);
 
   if (!portfolio) {
     notFound();

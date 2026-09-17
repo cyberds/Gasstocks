@@ -137,8 +137,18 @@ const FLAT_MODE = `(function () {
 })();`;
 
 import Chatbot from '../components/Chatbot';
+import PortfolioNavProvider from '../components/PortfolioNavProvider';
+import { getPortfolioNav } from '../lib/portfolio';
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  /* The header menu is secondary navigation, so an outage degrades it to an
+     empty list instead of taking down every page. It is logged loudly; the
+     portfolio pages themselves do not swallow errors. */
+  const portfolioNav = await getPortfolioNav().catch((err) => {
+    console.error('[layout] could not load track record for the header menu', err);
+    return [];
+  });
+
   return (
     // suppressHydrationWarning: the flat-mode script below runs before
     // hydration and sets data-gs-flat on this element by design. Without this,
@@ -157,7 +167,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
-        {children}
+        <PortfolioNavProvider items={portfolioNav}>{children}</PortfolioNavProvider>
         <Chatbot />
       </body>
     </html>

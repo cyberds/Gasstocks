@@ -4,12 +4,14 @@ import ShowcaseRail from '../components/ShowcaseRail';
 import AboutAccordion from '../components/AboutAccordion';
 import Capability from '../components/Capability';
 import LeasingRail from '../components/LeasingRail';
+import MarineRail from '../components/MarineRail';
 
 import Assurance from '../components/Assurance';
 import ContactForm from '../components/ContactForm';
 import SiteFooter from '../components/SiteFooter';
 import PortfolioSlider from '../components/PortfolioSlider';
 import { Metadata } from 'next';
+import { getPortfolios } from '../lib/portfolio';
 
 export const metadata: Metadata = {
   title: 'Gasstocks Limited | Marine & Civil Infrastructure Contractor',
@@ -31,7 +33,9 @@ const websiteSchema = {
   }
 };
 
-export default function Home() {
+export default async function Home() {
+  const portfolios = await getPortfolios();
+
   return (
     // No overflow on this wrapper: overflow-x:hidden computes overflow-y to
     // auto, which would make it the scrollport for [data-gs-sticky] and kill
@@ -49,11 +53,12 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
       />
       <Journey />
+      <MarineRail />
       <ShowcaseRail />
       <AboutAccordion />
       <Capability />
       <LeasingRail />
-      <PortfolioSlider />
+      <PortfolioSlider portfolios={portfolios} />
       <Assurance />
       <ContactForm />
       <SiteFooter />

@@ -7,13 +7,17 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "sync:company": "node tools/sync-company-doc.mjs"
+    "sync:company": "node tools/sync-company-doc.mjs",
+    "check:services": "node --env-file-if-exists=.env.local tools/check-services.mjs",
+    "migrate:portfolio": "node --env-file-if-exists=.env.local tools/migrate-portfolio.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
     "@types/leaflet": "^1.9.22",
+    "cloudinary": "^2.11.0",
     "gsap": "^3.15.0",
     "leaflet": "^1.9.4",
+    "mongodb": "^7.6.0",
     "next": "^15.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

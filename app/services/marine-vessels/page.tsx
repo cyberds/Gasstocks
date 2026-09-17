@@ -6,8 +6,8 @@ import { SERVICES } from '../../../lib/services';
 
 export const metadata = {
   title: 'Marine & Vessels Services | Gasstocks Limited',
-  description: 'Offshore supply logistics, vessel chartering (AHTSVs, PSVs, tugs, barges), ship management, marine security escort, and offshore catering in Nigeria.',
-  keywords: ['Vessel Charter Nigeria', 'Offshore Logistics', 'Marine Security Escort', 'Ship Management', 'AHTSV Hire', 'Houseboat Catering'],
+  description: 'Marine logistics, vessel chartering and management, offshore supply, barge and workboat operations, offshore project logistics and fleet management in Nigeria.',
+  keywords: ['Marine Logistics Nigeria', 'Vessel Charter Nigeria', 'Offshore Supply', 'Barge Operations', 'Offshore Project Logistics', 'Fleet Management'],
   alternates: {
     canonical: '/services/marine-vessels',
   }
@@ -22,14 +22,13 @@ const serviceSchema = {
     "name": "Gasstocks Limited"
   },
   "areaServed": "Nigeria",
-  "description": "Offshore supply logistics, vessel chartering, ship management, marine security escort, and offshore catering.",
+  "description": "Marine logistics, vessel chartering and management, offshore supply and support, marine transportation, barge and workboat operations, marine procurement, vessel mobilisation, offshore project logistics and fleet management.",
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Marine & Vessels Services",
-    "itemListElement": [
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Vessel Chartering" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Offshore Logistics" } }
-    ]
+    "itemListElement": SERVICES.filter((s) => s.group === 'Marine & vessels').map((s) => (
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": s.name } }
+    )),
   }
 };
 
@@ -71,7 +70,7 @@ export default function MarineVesselsPage() {
                     <div key={s.id} className="blueprint" style={{ padding: '24px', background: 'var(--color-surface)' }}>
                       <i className="corner tl"></i><i className="corner tr"></i><i className="corner bl"></i><i className="corner br"></i>
                       <div style={{ fontSize: '12px', fontFamily: 'ui-monospace, Menlo, monospace', color: 'var(--color-accent)', marginBottom: '6px' }}>
-                        0{idx + 1} / MARINE
+                        {String(idx + 1).padStart(2, '0')} / MARINE
                       </div>
                       <h3 style={{ fontSize: '20px', marginBottom: '10px' }}>{s.name}</h3>
                       <p style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--color-neutral-700)', margin: 0 }}>{s.covers}</p>

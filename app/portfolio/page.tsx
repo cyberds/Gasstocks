@@ -3,6 +3,7 @@ import PortfolioSlider from '../../components/PortfolioSlider';
 import SiteHeader from '../../components/SiteHeader';
 import SiteFooter from '../../components/SiteFooter';
 import { Metadata } from 'next';
+import { getPortfolios } from '../../lib/portfolio';
 
 export const metadata: Metadata = {
   title: 'Track Record & Portfolio | Gasstocks Limited',
@@ -13,15 +14,25 @@ export const metadata: Metadata = {
   }
 };
 
-const collectionSchema = {
-  "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "name": "Gasstocks Limited Track Record & Portfolio",
-  "description": "Explore a showcase of our recent projects and marine operations in Nigeria.",
-  "url": "https://gasstocks.com/portfolio"
-};
+export default async function PortfolioPage() {
+  const portfolios = await getPortfolios();
+  const collectionSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Gasstocks Limited Track Record & Portfolio",
+    "description": "Explore a showcase of our recent projects and marine operations in Nigeria.",
+    "url": "https://gasstocks.com/portfolio",
+    "mainEntity": {
+      "@type": "ItemList",
+      "itemListElement": portfolios.map((p, i) => ({
+        "@type": "ListItem",
+        "position": i + 1,
+        "url": `https://gasstocks.com/portfolio/${p.slug}`,
+        "name": p.title,
+      })),
+    },
+  };
 
-export default function PortfolioPage() {
   return (
     <div style={{
       fontFamily: 'var(--font-body)',
@@ -39,7 +50,7 @@ export default function PortfolioPage() {
           <h1 style={{ fontSize: '3rem', fontWeight: 700 }}>Our Portfolio</h1>
           <p style={{ color: 'color-mix(in srgb,var(--color-text) 60%,transparent)', fontSize: '1.2rem' }}>Explore a showcase of our recent projects and marine operations.</p>
         </div>
-        <PortfolioSlider />
+        <PortfolioSlider portfolios={portfolios} />
       </main>
       <SiteFooter />
     </div>

@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { createPortal } from 'react-dom';
-import { Portfolio } from '../lib/portfolio';
+import type { Portfolio } from '../lib/portfolio-types';
 
 export default function PortfolioCard({ portfolio }: { portfolio: Portfolio }) {
   const [isHovered, setIsHovered] = useState(false);

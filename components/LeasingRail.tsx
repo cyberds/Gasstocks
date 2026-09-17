@@ -17,7 +17,7 @@ export default function LeasingRail() {
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '12px' }}>
                 <span style={{ width: '26px', height: '1px', background: 'var(--color-accent)' }}></span>
-                <span style={{ fontSize: '10.5px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--color-accent-700)' }}>Flagship service · plant & marine hire</span>
+                <span style={{ fontSize: '10.5px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--color-accent-700)' }}>Equipment · plant & marine hire</span>
               </div>
               <h2 style={{ maxWidth: '19ch' }}>Owned plant and vessels, on hire — bare or operated.</h2>
             </div>

@@ -73,16 +73,20 @@ if asked about one that is not here, say plainly that we do not currently hold i
 
 ## Services
 
-Gasstocks offers 20 services across 4 areas. The area names are
+Gasstocks offers 24 services across 4 areas. The area names are
 for grouping; customers know these by the service names.
 
 ### Marine & vessels
 
-- **Vessel charter & hire** — AHTSVs, PSVs, crew boats, tugs, barges, houseboats, hovercraft and patrol boats for swamp, shallow-water and offshore work — bare or crewed charter.
-- **Offshore & marine logistics** — Offshore supply runs, crew transfer, port agency, and project and heavy-lift cargo handling.
-- **Ship management & product carriage** — Time and voyage charter, LPG / LNG and clean petroleum product carriage, and full ship management.
-- **Marine security & escort** — Escort and patrol, exclusion-zone management, vessel hardening and authority liaison, with patrol craft and trained teams.
-- **Offshore catering & accommodation** — Galley operations, accommodation and hospitality management, provisioning and cold chain.
+- **Marine logistics** — Planning and coordination of cargo, crew and materials movement across ports, jetties, swamp and offshore locations.
+- **Vessel chartering & management** — AHTSVs, PSVs, crew boats, tugs and houseboats on bare or crewed charter, with full technical and crew management.
+- **Offshore supply & support** — Supply runs, crew transfer, standby and field support for offshore installations and drilling campaigns.
+- **Marine transportation** — Movement of cargo, equipment and petroleum products by sea and inland waterways on time and voyage charter.
+- **Barge & workboat operations** — Flat-top, spud-leg and crane barges with tugs and workboats for towage, mooring and marine works.
+- **Marine procurement & supply** — Sourcing and delivery of vessel spares, consumables, provisions, fuel and marine equipment.
+- **Vessel mobilisation & demobilisation** — Preparing vessels to join or leave a campaign — surveys, certification, insurance and transit to or from location.
+- **Offshore project logistics** — End-to-end logistics for offshore construction and installation projects, including heavy-lift and out-of-gauge cargo.
+- **Fleet management** — Maintenance planning, crewing, compliance and performance monitoring across multi-vessel fleets.
 
 ### Engineering & construction
 

@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useRef, useState } from 'react';
-import { PORTFOLIOS } from '../lib/portfolio';
+import type { Portfolio } from '../lib/portfolio-types';
 import PortfolioCard from './PortfolioCard';
 
-export default function PortfolioSlider() {
+export default function PortfolioSlider({ portfolios }: { portfolios: Portfolio[] }) {
   const sliderRef = useRef<HTMLDivElement>(null);
   const [isDown, setIsDown] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -48,7 +48,7 @@ export default function PortfolioSlider() {
         onMouseUp={handleMouseUp}
         onMouseMove={handleMouseMove}
       >
-        {PORTFOLIOS.map(p => (
+        {portfolios.map(p => (
           <PortfolioCard key={p.slug} portfolio={p} />
         ))}
       </div>

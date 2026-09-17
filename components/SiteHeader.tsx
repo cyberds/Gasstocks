@@ -1,9 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { PORTFOLIOS } from '../lib/portfolio';
+import { usePortfolioNav } from './PortfolioNavProvider';
 
 export default function SiteHeader() {
+  const portfolios = usePortfolioNav();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeAccordion, setActiveAccordion] = useState<string | null>(null);
 
@@ -111,9 +112,9 @@ export default function SiteHeader() {
               </a>
               <div className="mega-menu">
                 <div className="mega-menu-grid track-record-grid">
-                  {PORTFOLIOS.slice(0, 4).map((p) => (
+                  {portfolios.slice(0, 4).map((p) => (
                     <a key={p.slug} href={`/portfolio/${p.slug}`} className="mega-card">
-                      <img src={p.images[0]} alt={p.title} />
+                      {p.image && <img src={p.image} alt={p.title} />}
                       <span>{p.title}</span>
                     </a>
                   ))}
@@ -214,7 +215,7 @@ export default function SiteHeader() {
                 {activeAccordion === 'portfolio' && (
                   <div className="mobile-sublinks">
                     <a href="/portfolio" onClick={() => setMobileMenuOpen(false)}>All Portfolio Projects</a>
-                    {PORTFOLIOS.map((p) => (
+                    {portfolios.map((p) => (
                       <a key={p.slug} href={`/portfolio/${p.slug}`} onClick={() => setMobileMenuOpen(false)}>
                         {p.title}
                       </a>

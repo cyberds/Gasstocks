@@ -43,42 +43,74 @@ export type Service = {
 export const SERVICES: Service[] = [
   // ── Marine & vessels ────────────────────────────────────────────────────
   {
-    id: 'vessel-charter',
-    name: 'Vessel charter & hire',
-    covers:
-      'AHTSVs, PSVs, crew boats, tugs, barges, houseboats, hovercraft and patrol boats for swamp, shallow-water and offshore work — bare or crewed charter.',
-    group: 'Marine & vessels',
-    flagship: true,
-  },
-  {
     id: 'marine-logistics',
-    name: 'Offshore & marine logistics',
+    name: 'Marine logistics',
     covers:
-      'Offshore supply runs, crew transfer, port agency, and project and heavy-lift cargo handling.',
+      'Planning and coordination of cargo, crew and materials movement across ports, jetties, swamp and offshore locations.',
     group: 'Marine & vessels',
     flagship: true,
   },
   {
-    id: 'ship-management',
-    name: 'Ship management & product carriage',
+    id: 'vessel-charter',
+    name: 'Vessel chartering & management',
     covers:
-      'Time and voyage charter, LPG / LNG and clean petroleum product carriage, and full ship management.',
+      'AHTSVs, PSVs, crew boats, tugs and houseboats on bare or crewed charter, with full technical and crew management.',
     group: 'Marine & vessels',
     flagship: true,
   },
   {
-    id: 'marine-security',
-    name: 'Marine security & escort',
+    id: 'offshore-support',
+    name: 'Offshore supply & support',
     covers:
-      'Escort and patrol, exclusion-zone management, vessel hardening and authority liaison, with patrol craft and trained teams.',
+      'Supply runs, crew transfer, standby and field support for offshore installations and drilling campaigns.',
     group: 'Marine & vessels',
     flagship: true,
   },
   {
-    id: 'offshore-catering',
-    name: 'Offshore catering & accommodation',
+    id: 'marine-transportation',
+    name: 'Marine transportation',
     covers:
-      'Galley operations, accommodation and hospitality management, provisioning and cold chain.',
+      'Movement of cargo, equipment and petroleum products by sea and inland waterways on time and voyage charter.',
+    group: 'Marine & vessels',
+    flagship: true,
+  },
+  {
+    id: 'barge-workboat',
+    name: 'Barge & workboat operations',
+    covers:
+      'Flat-top, spud-leg and crane barges with tugs and workboats for towage, mooring and marine works.',
+    group: 'Marine & vessels',
+    flagship: true,
+  },
+  {
+    id: 'marine-procurement',
+    name: 'Marine procurement & supply',
+    covers:
+      'Sourcing and delivery of vessel spares, consumables, provisions, fuel and marine equipment.',
+    group: 'Marine & vessels',
+    flagship: true,
+  },
+  {
+    id: 'vessel-mobilisation',
+    name: 'Vessel mobilisation & demobilisation',
+    covers:
+      'Preparing vessels to join or leave a campaign — surveys, certification, insurance and transit to or from location.',
+    group: 'Marine & vessels',
+    flagship: true,
+  },
+  {
+    id: 'offshore-project-logistics',
+    name: 'Offshore project logistics',
+    covers:
+      'End-to-end logistics for offshore construction and installation projects, including heavy-lift and out-of-gauge cargo.',
+    group: 'Marine & vessels',
+    flagship: true,
+  },
+  {
+    id: 'fleet-management',
+    name: 'Fleet management',
+    covers:
+      'Maintenance planning, crewing, compliance and performance monitoring across multi-vessel fleets.',
     group: 'Marine & vessels',
     flagship: true,
   },
