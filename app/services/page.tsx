@@ -3,11 +3,12 @@ import SiteHeader from '../../components/SiteHeader';
 import SiteFooter from '../../components/SiteFooter';
 import Capability from '../../components/Capability';
 import ContactForm from '../../components/ContactForm';
+import { GROUPS, GROUP_INFO, servicesInGroup } from '../../lib/services';
 
 export const metadata = {
-  title: 'Services & Support Capability | Gasstocks Limited',
-  description: 'Explore Gasstocks Limited energy, marine, engineering, instrumentation, and equipment supply capabilities across 20 specialised service areas.',
-  keywords: ['Gasstocks Services', 'Marine Logistics Nigeria', 'EPCM Engineering', 'Vessel Charter', 'Fiscal Metering', 'Oilfield Equipment Supply'],
+  title: 'Services',
+  description: 'Gasstocks Limited services for Nigeria’s oil and gas industry: swamp and deep offshore marine logistics, mechanical and civil engineering, instrumentation and control automation, procurement, equipment leasing and specialised manpower.',
+  keywords: ['Marine logistics Nigeria', 'Houseboat charter Port Harcourt', 'Swamp logistics', 'Pipeline construction Nigeria', 'Instrumentation and control automation', 'Oilfield procurement Nigeria'],
   alternates: {
     canonical: '/services',
   }
@@ -16,64 +17,21 @@ export const metadata = {
 const itemListSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Marine & Vessels",
-      "url": "https://gasstocks.com/services/marine-vessels"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Engineering & Construction",
-      "url": "https://gasstocks.com/services/engineering-construction"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "Instrumentation & Asset Integrity",
-      "url": "https://gasstocks.com/services/instrumentation-asset-integrity"
-    },
-    {
-      "@type": "ListItem",
-      "position": 4,
-      "name": "Supply & Equipment",
-      "url": "https://gasstocks.com/services/supply-equipment"
-    }
-  ]
+  "itemListElement": GROUPS.map((g, i) => ({
+    "@type": "ListItem",
+    "position": i + 1,
+    "name": g,
+    "url": `https://gasstocksltd.com/services/${GROUP_INFO[g].slug}`,
+  })),
 };
 
-const CATEGORIES = [
-  {
-    slug: 'marine-vessels',
-    title: 'Marine & Vessels',
-    image: '/assets/portfolio/2/IMG-20260618-WA0011.jpg',
-    description: 'Vessel chartering, offshore supply logistics, ship management, marine security escort, and offshore accommodation support.',
-    count: '5 Services',
-  },
-  {
-    slug: 'engineering-construction',
-    title: 'Engineering & Construction',
-    image: '/assets/portfolio/1/IMG-20260618-WA0025.jpg',
-    description: 'Pipeline construction, jetty marine civil engineering, dredging, land reclamation, steel fabrication, and EPCM project delivery.',
-    count: '7 Services',
-  },
-  {
-    slug: 'instrumentation-asset-integrity',
-    title: 'Instrumentation & Asset Integrity',
-    image: '/assets/portfolio/2/IMG-20260618-WA0014.jpg',
-    description: 'Control systems procurement, fiscal metering, NUPRC-compliant calibration, certification, and plant maintenance.',
-    count: '4 Services',
-  },
-  {
-    slug: 'supply-equipment',
-    title: 'Supply & Equipment',
-    image: '/assets/portfolio/1/IMG-20260618-WA0028.jpg',
-    description: 'Bare/operated heavy plant hire, oilfield valves & line pipe supply, industrial gases, LPG, and technical manpower outsourcing.',
-    count: '4 Services',
-  },
-];
+const CATEGORIES = GROUPS.map((g) => ({
+  slug: GROUP_INFO[g].slug,
+  title: g,
+  image: GROUP_INFO[g].image,
+  description: GROUP_INFO[g].description,
+  count: `${servicesInGroup(g).length} services`,
+}));
 
 export default function ServicesPage() {
   return (
@@ -96,13 +54,13 @@ export default function ServicesPage() {
         <section style={{ padding: '80px 32px 60px', background: 'var(--color-neutral-900)', color: '#fff' }}>
           <div style={{ maxWidth: '1320px', margin: '0 auto' }}>
             <div style={{ fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--color-accent-300)', marginBottom: '12px' }}>
-              Service Catalogue
+              Service catalogue
             </div>
             <h1 style={{ fontSize: 'clamp(36px, 5vw, 54px)', lineHeight: 1.08, margin: '0 0 20px', color: '#fff' }}>
-              Compliant & Innovative Energy Services
+              Marine, engineering and supply services for Nigeria&apos;s oil and gas industry
             </h1>
             <p style={{ fontSize: '18px', maxWidth: '64ch', color: 'color-mix(in srgb, #fff 80%, transparent)', lineHeight: 1.6, margin: 0 }}>
-              Gasstocks Limited provides end-to-end support across marine operations, civil engineering, instrumentation, and oilfield equipment supply — delivering accountable execution across Nigeria and international sectors.
+              Gasstocks holds permits from the industry regulator to deliver five classes of service: marine, mechanical engineering, instrumentation and control automation, civil engineering, and procurement, leasing and hospitality. We deliver them onshore, in the swamp and deep offshore, from bases in Port Harcourt, Lagos, Warri and Houston.
             </p>
           </div>
         </section>
@@ -111,9 +69,9 @@ export default function ServicesPage() {
         <section style={{ padding: '80px 32px', background: 'var(--color-surface)', borderBottom: '1px solid var(--color-divider)' }}>
           <div style={{ maxWidth: '1320px', margin: '0 auto' }}>
             <div style={{ fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--color-accent)', marginBottom: '12px' }}>
-              Core Service Disciplines
+              Service categories
             </div>
-            <h2 style={{ fontSize: '36px', marginBottom: '48px' }}>Select a Discipline to Learn More</h2>
+            <h2 style={{ fontSize: '36px', marginBottom: '48px' }}>Choose a category</h2>
 
             <div
               style={{
@@ -155,7 +113,7 @@ export default function ServicesPage() {
                       {cat.description}
                     </p>
                     <span style={{ fontSize: '13px', fontWeight: 600, color: 'var(--color-accent)' }}>
-                      Explore Category &rarr;
+                      View services &rarr;
                     </span>
                   </div>
                 </a>

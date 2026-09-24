@@ -2,11 +2,11 @@
 
 import { useEffect, useMemo, useState } from 'react';
 
-import { GROUPS, SERVICES, type Group } from '../lib/services';
+import { GROUPS, GROUP_INFO, SERVICES, type Group } from '../lib/services';
 
 /* The capability register — every service Gasstocks offers.
  *
- * There are twenty, which is a wall of text if you present it as one flat
+ * There are about twenty-five, which is a wall of text if you present it as one flat
  * table, so the register is grouped and filterable: "All" renders four labelled
  * blocks rather than twenty undifferentiated rows, and a visitor who only cares
  * about instrumentation can get to four rows in one click.
@@ -54,12 +54,9 @@ export default function Capability() {
   useEffect(() => {
     const handleHash = () => {
       const hash = window.location.hash.replace('#', '');
-      const map: Record<string, Filter> = {
-        'marine-vessels': 'Marine & vessels',
-        'engineering-construction': 'Engineering & construction',
-        'instrumentation-integrity': 'Instrumentation & asset integrity',
-        'supply-equipment': 'Supply & equipment'
-      };
+      const map: Record<string, Filter> = Object.fromEntries(
+        GROUPS.map((g) => [GROUP_INFO[g].slug, g]),
+      );
       if (map[hash]) {
         setFilter(map[hash]);
       }
@@ -114,7 +111,7 @@ export default function Capability() {
               Services and support capability
             </div>
             <h2 style={{ fontSize: '46px', lineHeight: '1.02', margin: '0', maxWidth: '20ch' }}>
-              Support services for Nigeria&apos;s upstream oil and gas industry.
+              Every service Gasstocks is permitted to deliver.
             </h2>
           </div>
           <p
@@ -127,10 +124,9 @@ export default function Capability() {
               textWrap: 'pretty',
             }}
           >
-            Gasstocks provides practical, high-quality support services for Nigeria&apos;s upstream
-            oil and gas industry — from marine logistics and offshore support to civil works,
-            instrumentation and equipment supply. The capability register below sets out the services
-            we can mobilise and deliver with direct supervision and accountable execution.
+            Gasstocks holds industry regulatory permits across five service lines: marine,
+            mechanical engineering, instrumentation and control automation, civil engineering, and
+            procurement, leasing and hospitality. The register below lists what each line covers.
           </p>
         </div>
 
@@ -200,14 +196,8 @@ export default function Capability() {
             </thead>
             {visibleGroups.map((group) => {
               const rows = SERVICES.filter((s) => s.group === group);
-              const groupIds: Record<string, string> = {
-                'Marine & vessels': 'marine-vessels',
-                'Engineering & construction': 'engineering-construction',
-                'Instrumentation & asset integrity': 'instrumentation-integrity',
-                'Supply & equipment': 'supply-equipment'
-              };
-              return (
-                <tbody key={group} id={groupIds[group]} data-gs-group={group}>
+                            return (
+                <tbody key={group} id={GROUP_INFO[group].slug} data-gs-group={group}>
                   {/* Section rule. Only earns its place when more than one
                       group is on screen; filtered to one, the chip already
                       says which. */}

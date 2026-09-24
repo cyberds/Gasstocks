@@ -1,4 +1,4 @@
-import { COMPANY } from '../lib/company';
+import { CLIENTS, COMPANY, CREDENTIALS } from '../lib/company';
 
 /* Assurance — compliance standing, and nothing more than can be evidenced.
  *
@@ -30,15 +30,6 @@ const detailStyle = {
   color: 'color-mix(in srgb,var(--color-text) 55%,transparent)',
 };
 
-const clientLogos = [
-  '/assets/clients/Chevron_Logo.svg.webp',
-  '/assets/clients/Exxon_Mobil_Logo.svg.webp',
-  '/assets/clients/Nigerian_National_Petroleum_Company_logo.svg.webp',
-  '/assets/clients/Shell-gas-station-logo-trans.png',
-  '/assets/clients/ardova.e1c5751.png',
-  '/assets/clients/mobil-logo.png',
-  '/assets/clients/ronish-logo.png',
-];
 
 export default function Assurance() {
   return (
@@ -131,7 +122,7 @@ export default function Assurance() {
               Assurance
             </div>
             <h2 style={{ fontSize: '46px', lineHeight: '1.02', margin: '0 0 16px' }}>
-              Certified, licensed, accountable.
+              Certified, licensed, insured.
             </h2>
             <p
               style={{
@@ -142,10 +133,10 @@ export default function Assurance() {
                 textWrap: 'pretty',
               }}
             >
-              Gasstocks operates under ISO 9001:2015 quality management, is licensed by the NUPRC
-              and registered with the NCDMB as a Category 1 Marine Vessel Operator. Our role is to
-              deliver high-quality, efficient support services to Nigeria&apos;s upstream oil and gas
-              industry with accountable execution and documented compliance.
+              Gasstocks operates under ISO 9001:2015 quality management, is licensed by the NUPRC and
+              registered with the NCDMB as a Category 1 Marine Vessel Operator. We are also licensed
+              by the NSCDC as a Private Guard Maritime Company, our vessels are insured by Cornerstone
+              Insurance Plc, and our operations are certified each year by the relevant regulators.
             </p>
             <a
               className="btn btn-secondary"
@@ -158,7 +149,7 @@ export default function Assurance() {
           <div style={{ width: '100%', overflow: 'hidden' }}>
             <div className="marquee-container">
               <div className="marquee-content">
-                {[...COMPANY.accreditations, ...COMPANY.accreditations].map((a, i) => (
+                {[...COMPANY.accreditations, ...CREDENTIALS, ...COMPANY.accreditations, ...CREDENTIALS].map((a, i) => (
                   <div key={i} style={tileStyle}>
                     <div style={{ flex: 1 }}>
                       <div style={headlineStyle}>{a.headline}</div>
@@ -190,13 +181,13 @@ export default function Assurance() {
               marginBottom: '18px',
             }}
           >
-            Selected clients &amp; principals
+            Clients we have served
           </div>
           <div className="marquee-container">
             <div className="marquee-content reverse">
-              {[...clientLogos, ...clientLogos, ...clientLogos].map((src, i) => (
-                <div key={i} className="client-logo-box">
-                  <img src={src} alt="Client logo" />
+              {[...CLIENTS, ...CLIENTS].map((c, i) => (
+                <div key={i} className="client-logo-box" aria-hidden={i >= CLIENTS.length || undefined}>
+                  <img src={c.logo} alt={c.name} title={c.name} />
                 </div>
               ))}
             </div>

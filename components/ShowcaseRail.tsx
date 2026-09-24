@@ -16,7 +16,7 @@ export default function ShowcaseRail() {
           <div className="gs-showcase-head">
             <div>
               <div className="gs-showcase-kicker">What we do</div>
-              <h2>Equipped for the work you need moved, dredged or built.</h2>
+              <h2>Equipped for the creeks, the swamp and deep offshore.</h2>
             </div>
           </div>
 
@@ -25,11 +25,11 @@ export default function ShowcaseRail() {
               <div className="gs-track" data-gs-track="">
 
                 <article className="gs-card" role="group" aria-roledescription="slide" aria-label="1 of 4">
-                  <img src="https://images.unsplash.com/photo-1670121180530-cfcba4438038?auto=format&fit=crop&w=1600&q=70" alt="A loaded cargo ship alongside a dock" loading="lazy" decoding="async" />
+                  <img src="https://images.unsplash.com/photo-1670121180530-cfcba4438038?auto=format&fit=crop&w=1600&q=70" alt="A vessel alongside a jetty" loading="lazy" decoding="async" />
                   <div className="gs-card-body">
-                    <div className="gs-card-index"><span>01</span><i></i><span>Shipping & logistics</span></div>
-                    <h3>Large shipment?</h3>
-                    <p>We are equipped, fast and reliable</p>
+                    <div className="gs-card-index"><span>01</span><i></i><span>Marine logistics</span></div>
+                    <h3>Houseboats, tugs and crew boats on location at short notice.</h3>
+                    <p>Our own vessels, plus key owners&apos; fleets at competitive rates.</p>
                     <a className="btn btn-primary blueprint" href="#contact">Get Started<i className="corner tl"></i><i className="corner tr"></i><i className="corner bl"></i><i className="corner br"></i></a>
                   </div>
                 </article>
@@ -37,8 +37,8 @@ export default function ShowcaseRail() {
                 <article className="gs-card" role="group" aria-roledescription="slide" aria-label="2 of 4">
                   <img src="https://images.unsplash.com/photo-1670912461796-81819c1e525b?auto=format&fit=crop&w=1600&q=70" alt="A construction crane standing over open water" loading="lazy" decoding="async" />
                   <div className="gs-card-body">
-                    <div className="gs-card-index"><span>02</span><i></i><span>Marine & civil construction</span></div>
-                    <h3>We offer bespoke engineering in construction of jetties, roads and bridges</h3>
+                    <div className="gs-card-index"><span>02</span><i></i><span>Civil engineering</span></div>
+                    <h3>Piling, jetties, roads and bridges, designed and built with our sister companies.</h3>
                     <a className="btn btn-primary blueprint" href="#contact">Get Started<i className="corner tl"></i><i className="corner tr"></i><i className="corner bl"></i><i className="corner br"></i></a>
                   </div>
                 </article>
@@ -46,17 +46,17 @@ export default function ShowcaseRail() {
                 <article className="gs-card" role="group" aria-roledescription="slide" aria-label="3 of 4">
                   <img src="https://images.unsplash.com/photo-1530890448995-4d82724f702c?auto=format&fit=crop&w=1600&q=70" alt="A tanker under way at sea" loading="lazy" decoding="async" />
                   <div className="gs-card-body">
-                    <div className="gs-card-index"><span>03</span><i></i><span>Expeditions</span></div>
-                    <h3>We've equipped 300+ expeditions with crew, security, supply, construction and support vessel services.</h3>
+                    <div className="gs-card-index"><span>03</span><i></i><span>Track record</span></div>
+                    <h3>Fourteen SPDC and Eroton contracts: pipeline surveillance, wellhead maintenance, dredging and field security logistics.</h3>
                     <a className="btn btn-primary blueprint" href="#contact">Get Started<i className="corner tl"></i><i className="corner tr"></i><i className="corner bl"></i><i className="corner br"></i></a>
                   </div>
                 </article>
 
                 <article className="gs-card" role="group" aria-roledescription="slide" aria-label="4 of 4">
-                  <img src="https://images.unsplash.com/photo-1595734939818-f4e0d44957df?auto=format&fit=crop&w=1600&q=70" alt="Heavy plant working on a road under construction" loading="lazy" decoding="async" />
+                  <img src="https://images.unsplash.com/photo-1595734939818-f4e0d44957df?auto=format&fit=crop&w=1600&q=70" alt="Heavy plant working on a construction site" loading="lazy" decoding="async" />
                   <div className="gs-card-body">
-                    <div className="gs-card-index"><span>04</span><i></i><span>Civil engineering</span></div>
-                    <h3>We offer the highest quality civil engineering services within timeline and budget.</h3>
+                    <div className="gs-card-index"><span>04</span><i></i><span>Procurement</span></div>
+                    <h3>Line pipe, valves, Christmas trees and instrumentation, sourced through Houston, London and Asia.</h3>
                     <a className="btn btn-primary blueprint" href="#contact">Get Started<i className="corner tl"></i><i className="corner tr"></i><i className="corner bl"></i><i className="corner br"></i></a>
                   </div>
                 </article>

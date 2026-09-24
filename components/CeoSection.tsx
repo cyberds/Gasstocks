@@ -95,7 +95,7 @@ export default function CeoSection() {
           
           <div style={{ color: 'var(--color-text)', opacity: 0.85 }}>
             <p>
-              Emmanuel Okene is the CEO at Gasstocks based in Richmond, Texas. Under his visionary leadership, Gasstocks has grown into a premier marine and civil infrastructure contractor.
+              Emmanuel Okene leads Gasstocks Limited and its Houston subsidiary, Gasstocks Inc., based in Richmond, Texas. Under his leadership Gasstocks has become a marine logistics and engineering partner to Shell, Eroton and other Niger Delta operators. He draws on a wide network of industry professionals and professionally run companies to deliver project outcomes.
             </p>
             <p>
               Previously, Emmanuel served as the Oil Services Head (South) at UBA Group, bringing extensive financial and operational expertise to the oil and gas sector.

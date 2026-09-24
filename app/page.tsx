@@ -1,5 +1,7 @@
 import SiteHeader from '../components/SiteHeader';
 import Journey from '../components/Journey';
+import VideoHero from '../components/VideoHero';
+import { getHeroVariant } from '../lib/hero-variant';
 import ShowcaseRail from '../components/ShowcaseRail';
 import AboutAccordion from '../components/AboutAccordion';
 import Capability from '../components/Capability';
@@ -14,8 +16,8 @@ import { Metadata } from 'next';
 import { getPortfolios } from '../lib/portfolio';
 
 export const metadata: Metadata = {
-  title: 'Gasstocks Limited | Marine & Civil Infrastructure Contractor',
-  description: 'Gasstocks is a premier marine and civil infrastructure contractor operating in Nigeria since 2008. We provide dredging, shipping, marine construction, civil engineering, and plant hire services.',
+  title: "Gasstocks Limited | Marine Logistics & Engineering for Nigeria's Oil and Gas",
+  description: 'Gasstocks Limited is an indigenous Nigerian oil and gas services company, established in 2008. We deliver swamp and deep offshore marine logistics, mechanical and civil engineering, instrumentation and control automation, and procurement from Port Harcourt, Lagos and Houston.',
   alternates: {
     canonical: '/',
   }
@@ -25,13 +27,16 @@ const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "Gasstocks Limited",
-  "url": "https://gasstocks.com",
+  "url": "https://gasstocksltd.com",
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "https://gasstocks.com/search?q={search_term_string}",
+    "target": "https://gasstocksltd.com/search?q={search_term_string}",
     "query-input": "required name=search_term_string"
   }
 };
+
+// Re-render hourly so the weekday-based hero variant switches over at midnight.
+export const revalidate = 3600;
 
 export default async function Home() {
   const portfolios = await getPortfolios();
@@ -52,7 +57,7 @@ export default async function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
       />
-      <Journey />
+      {getHeroVariant() === 'video' ? <VideoHero /> : <Journey />}
       <MarineRail />
       <ShowcaseRail />
       <AboutAccordion />

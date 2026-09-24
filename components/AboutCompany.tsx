@@ -63,10 +63,10 @@ export default function AboutCompany() {
             Who We Are
           </div>
           <h2 style={{ fontSize: '38px', lineHeight: 1.15, marginBottom: '24px' }}>
-            An indigenous energy & marine infrastructure leader operating since 2008.
+            One of the foremost indigenous service companies in Nigeria&apos;s oil and gas industry.
           </h2>
           <p style={{ fontSize: '15px', lineHeight: 1.6, color: 'var(--color-neutral-700)', margin: 0 }}>
-            Gasstocks Limited is managed by a team of Nigerian and international professionals with decades of experience in the global financial, oilfield, and energy sectors. We work to the standards required by International Oil Companies and leading independent operators, delivering compliant, innovative, and sustainable solutions.
+            About 70% of Nigeria&apos;s oil and gas is produced in the Niger Delta, a coastal belt of swamps, creeks and river channels. International operators need indigenous partners who can work there to their standards. Gasstocks was set up in 2008 to be that partner. Our team of Nigerian and foreign professionals brings decades of experience in the global financial and energy sectors, and we promote the government&apos;s local content policy throughout.
           </p>
         </div>
 
@@ -94,10 +94,10 @@ export default function AboutCompany() {
             <i className="corner tl"></i><i className="corner tr"></i><i className="corner bl"></i><i className="corner br"></i>
             <div>
               <div style={{ color: 'var(--color-accent)', fontSize: '18px', fontWeight: 'bold', fontFamily: 'var(--font-heading)', marginBottom: '20px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                What we are trying to do
+                Our purpose
               </div>
               <p style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--color-neutral-800)', margin: 0 }}>
-                To deliver high-quality, efficient support services to Nigeria's upstream oil and gas industry — through functional execution, a trained workforce, and a management team that holds the work to the quality, timeliness, and value we promised.
+                To provide optimised, professional and efficient services that maximise returns on our clients&apos; operations, while remaining economically sustainable and socially responsible.
               </p>
             </div>
             <div style={{ marginTop: '24px', opacity: 0.1, fontFamily: 'var(--font-heading)', fontSize: '64px', fontWeight: 900, textAlign: 'right', lineHeight: 1 }}>
@@ -122,9 +122,9 @@ export default function AboutCompany() {
                 The difference we make
               </div>
               <ul style={{ paddingLeft: '16px', margin: 0, fontSize: '14px', lineHeight: 1.6, color: 'var(--color-neutral-800)' }}>
-                <li style={{ marginBottom: '10px' }}>Strengthening Nigeria's energy and marine infrastructure capacity.</li>
-                <li style={{ marginBottom: '10px' }}>Delivering cost-effective, compliant, and innovative support services.</li>
-                <li>Supporting local workforce development and knowledge transfer.</li>
+                <li style={{ marginBottom: '10px' }}>Giving International Oil Companies an indigenous partner that delivers to their standards in the Niger Delta.</li>
+                <li style={{ marginBottom: '10px' }}>Reducing project cost through lean management and a strict maintenance culture.</li>
+                <li>Promoting local content, protecting the environment and keeping strong relations with host communities.</li>
               </ul>
             </div>
             <div style={{ marginTop: '24px', opacity: 0.1, fontFamily: 'var(--font-heading)', fontSize: '64px', fontWeight: 900, textAlign: 'right', lineHeight: 1 }}>
@@ -144,7 +144,7 @@ export default function AboutCompany() {
           >
             <img
               src="/assets/portfolio/2/IMG-20260618-WA0015.jpg"
-              alt="Gasstocks Marine Operations"
+              alt="Gasstocks marine operations in the Niger Delta"
               style={{
                 position: 'absolute',
                 inset: 0,

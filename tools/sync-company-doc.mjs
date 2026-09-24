@@ -27,7 +27,7 @@ const END = '<!-- END GENERATED -->';
  * read directly rather than transpiled or, worse, re-parsed with regexes. Both
  * files use only erasable syntax (annotations and `as const`), which is what
  * that support covers. Requires Node >= 22.6; this repo runs 24. */
-const { COMPANY, DISPLAY } = await import(
+const { COMPANY, DISPLAY, CLIENTS, FLEET, LOGISTICS_BASES, JETTIES, TRACK_RECORD, LOGISTICS_SPREAD, CREDENTIALS } = await import(
   `file://${path.join(ROOT, 'lib', 'company.ts').replace(/\\/g, '/')}`
 );
 const { GROUPS, SERVICES } = await import(
@@ -58,6 +58,36 @@ w('This list is exhaustive. Gasstocks holds no certifications beyond those below
 w('if asked about one that is not here, say plainly that we do not currently hold it.');
 w();
 for (const a of COMPANY.accreditations) w(`- **${a.headline}** — ${a.detail}`);
+w();
+w('### Other licences and cover');
+w();
+for (const c of CREDENTIALS) w(`- **${c.headline}** — ${c.detail}`);
+w();
+
+w('## Clients');
+w();
+for (const c of CLIENTS) w(`- ${c.name}`);
+w();
+
+w('## Fleet and equipment');
+w();
+for (const f of FLEET) w(`- **${f.name}** — ${f.spec}`);
+w();
+
+w('## Logistics bases and jetties');
+w();
+w(`Logistics bases (with strategic partners): ${LOGISTICS_BASES.join(', ')}.`);
+w();
+w('Jetties and fabrication yards accessible for in-country logistics:');
+w();
+for (const j of JETTIES) w(`- ${j}`);
+w();
+
+w('## Contract history');
+w();
+w(`"Full marine logistics spread" means: ${LOGISTICS_SPREAD}.`);
+w();
+for (const r of TRACK_RECORD) w(`- **${r.client}, ${r.period}** — ${r.contract}: ${r.scope}`);
 w();
 
 w('## Services');

@@ -6,6 +6,7 @@ import SiteFooter from '../../components/SiteFooter';
 import AboutHero from '../../components/AboutHero';
 import AboutCompany from '../../components/AboutCompany';
 import CeoSection from '../../components/CeoSection';
+import AboutOperations from '../../components/AboutOperations';
 import ShowcaseRail from '../../components/ShowcaseRail';
 import AboutCTA from '../../components/AboutCTA';
 import ContactForm from '../../components/ContactForm';
@@ -29,6 +30,7 @@ export default function AboutPage() {
         <AboutHero />
         <AboutCompany />
         <CeoSection />
+        <AboutOperations />
         
         {/* Track Record & Capability added to About Page */}
         <ShowcaseRail />

@@ -19,27 +19,49 @@ not be happy to see quoted back to a client.
 
 ## Who we are
 
-Gasstocks Limited is an indigenous Nigerian energy and marine services provider,
-managed by a team of Nigerian and international professionals with decades of
-experience in the global financial, oilfield and energy sectors. The company
-commenced business in 2008 and works to the standards required by International
-Oil Companies and leading independent operators.
+Gasstocks Limited (RC 359117) is an indigenous company operating in Nigeria's oil
+and gas industry. It commenced business in 2008 and is managed by a team of
+Nigerian and foreign professionals with decades of experience in the global
+financial and energy sectors. We provide marine, transportation and logistics,
+instrumentation and control automation, engineering and procurement services to
+clients onshore and offshore, under permits from the industry's regulatory
+agencies. Gasstocks Inc., a subsidiary based in Houston, coordinates overseas
+cargo, logistics and strategic partnerships.
 
-We deliver compliant, innovative and sustainable solutions across marine
-operations, engineering, instrumentation and energy supply.
+The profile's taglines are "Rethink service delivery" and "Rethink safety and service".
 
-## What we are trying to do
+## What we want to become
 
-To deliver high-quality, efficient support services to Nigeria's upstream oil and
-gas industry — through functional execution, a trained workforce, and a
-management team that holds the work to the quality, timeliness and value we
-promised.
+To be the leading service provider of first choice in our market segment.
 
-## The difference we make
+## Our purpose
 
-- Strengthening Nigeria's energy and marine infrastructure capacity.
-- Delivering cost-effective, compliant and innovative support services.
-- Supporting local workforce development and knowledge transfer.
+To provide optimised, professional and efficient services that maximise returns
+on our clients' operations, while remaining economically sustainable and
+socially responsible.
+
+## Our five service lines
+
+01 Marine services · 02 Mechanical engineering · 03 Instrumentation and control
+automation · 04 Civil engineering · 05 Other services (procurement, equipment
+leasing and specialised manpower, bunkering, fresh water and chandelling,
+marine hospitality, warehousing). The website groups these into four categories;
+mechanical and civil engineering share one.
+
+## What sets us apart (company-stated)
+
+- Structure and discipline; bank facilities repaid without requests for waivers.
+- Strict maintenance culture and short turnaround on client feedback.
+- Lean management that reduces project cost for clients.
+- Licensed Private Guard Maritime Company (NSCDC/PG/015/000697); Nigerian Navy
+  and Army gunboats available at short notice.
+- GPS tracking and area-appropriate communications on our vessels.
+- Vessels insured by Cornerstone Insurance Plc (hull, public liability, group
+  life); staff health cover through Wellness Health Management Services.
+- Offshore catering delivered with Courdeau Catering.
+- Technical management led by an expatriate engineer with over 41 years of
+  project delivery, including Nigerdock.
+- Strong community relations and support for the local content policy.
 
 <!-- BEGIN GENERATED — edit lib/company.ts and lib/services.ts, then run npm run sync:company -->
 
@@ -65,52 +87,130 @@ This list is exhaustive. Gasstocks holds no certifications beyond those below;
 if asked about one that is not here, say plainly that we do not currently hold it.
 
 - **ISO 9001:2015** — Quality management · DQS / IQNet · cert. 40400090 QM15
-- **NUPRC** — Licensed operator
+- **NUPRC** — Licensed operator · service-category permits (issued by DPR, now NUPRC)
 - **NCDMB** — NOGIC JQS · Category 1 Marine Vessel Operator
 - **IMCA** — Member contractor
 - **PETAN** — Member
 - **RC359117** — Registered in Nigeria · 2008
 
+### Other licences and cover
+
+- **NSCDC licence** — Private Guard Maritime Company · NSCDC/PG/015/000697
+- **Marine insurance** — Hull, public liability and group life · Cornerstone Insurance Plc
+- **Staff health cover** — Staff, spouses and up to four children · Wellness Health Management Services
+- **Offshore catering** — Delivered with Courdeau Catering
+
+## Clients
+
+- Shell Petroleum Development Company of Nigeria (SPDC)
+- Nigerian Agip Oil Company (Eni)
+- Nigeria LNG (NLNG)
+- Chevron Nigeria Limited
+- Mobil Producing Nigeria (ExxonMobil)
+- Total E&P Nigeria (TotalEnergies)
+- Saipem
+- Eroton Exploration & Production
+- NNPC Limited
+- Ardova Plc
+- Ronish
+
+## Fleet and equipment
+
+- **River tugboats** — 500 hp, 800 hp and 1,000 hp
+- **Ocean tugboats** — Three power classes (30, 40 and 50)
+- **Ramp barges** — 500 t, 800 t and 1,000 t
+- **Dump barges** — 500 t to 1,500 t
+- **Passenger crew boats** — 40, 50 and 60 seats · 20–25 knots
+- **Houseboats** — 40-, 60- and 80-man, with catering and hotel services
+- **Security vessels & gunboats** — Manned by the Nigerian Navy, Army and Police
+- **Patrol boats** — 15 passengers · 25 knots
+- **Fast crew / patrol vessels** — Accommodation for 10–15 · 25 knots
+- **Hovercraft** — 12 persons · 50 km/h
+- **Fast supply vessel** — 64 passengers, 18 berths · 20 knots
+- **DP3 multipurpose offshore construction vessel** — ROV, 40 t crane, helideck, 140 persons
+- **Cranes** — 30 t, 50 t, 60 t and 80 t
+
+## Logistics bases and jetties
+
+Logistics bases (with strategic partners): Port Harcourt, Lagos, Warri, Houston, India, China, Hong Kong, London, Belgium.
+
+Jetties and fabrication yards accessible for in-country logistics:
+
+- Brawal Shipping Jetty, Onne FTZ
+- Starzs Marine & Engineering Jetty, FOT Onne
+- Premier Logistics Base (former Panalpina), Onne
+- El-Toutoma Jetty, Woji, Port Harcourt
+- Akpos Jetty, Abuloma, Port Harcourt
+- Hollyfield Jetty, Elelenwo Bypass, Port Harcourt
+- Tecon Jetty, Trans Amadi, Port Harcourt
+- Mabisel Jetty, Trans Amadi, Port Harcourt
+- Multiplan Jetty, Abuloma, Port Harcourt
+- PW Jetty, Abuloma, Port Harcourt
+- Lumbert Jetty, Trans Amadi
+- Nest Oil Jetty
+- Graham Petroserve Jetty, Warri
+- LADOL Deep Offshore Logistics Base, Lagos
+
+## Contract history
+
+"Full marine logistics spread" means: Houseboats, tugboats, crew boats, catering, diesel (AGO), potable water, waste disposal and security escort.
+
+- **SPDC, 2004 – 2007** — Oloma pipeline: Crew boat for offshore pipeline surveillance
+- **SPDC, 2005 – 2007** — B-Nag / Oloma pipeline: Crew boat and catering for pipeline surveillance
+- **SPDC, 2007 – 2009** — Krakama location: Accommodation vessel
+- **SPDC, 2007 – 2009** — Cawthorne Channel: Houseboat and catering for pipeline surveillance
+- **SPDC, 2008 – 2010** — Cawthorne Channel flow station: Crew boat and accommodation barge
+- **SPDC, 2008 – 2010** — Krakama flow station: Crew boat, accommodation barge and catering
+- **SPDC, 2017 – 2019** — Pipeline maintenance, Patrick Waterside: Full marine logistics spread
+- **SPDC, 2018 – 2019** — Dredging, Tunu Well 3 / Kanbo: Full marine logistics spread
+- **SPDC, 2018 – 2019** — Dredging, Tunu Well 5: Full marine logistics spread
+- **SPDC, 2018 –** — Wellhead maintenance & wireline, Soku: Full marine logistics spread
+- **SPDC, 2018 –** — Wellhead maintenance, Odimodi / Ogbotobo: Full marine logistics spread
+- **SPDC, 2019 – 2021** — Dodo North field security support: Full marine logistics spread
+- **Eroton E&P, 2018 –** — Akaso field workover, Cawthorne Channel: Houseboat, tugboat and ancillary services
+- **Eroton E&P, 2018 –** — Akaso field workover, Cawthorne Channel: Tugboat fuel and security service
+
 ## Services
 
-Gasstocks offers 24 services across 4 areas. The area names are
+Gasstocks offers 25 services across 4 areas. The area names are
 for grouping; customers know these by the service names.
 
-### Marine & vessels
+### Marine & logistics
 
-- **Marine logistics** — Planning and coordination of cargo, crew and materials movement across ports, jetties, swamp and offshore locations.
-- **Vessel chartering & management** — AHTSVs, PSVs, crew boats, tugs and houseboats on bare or crewed charter, with full technical and crew management.
-- **Offshore supply & support** — Supply runs, crew transfer, standby and field support for offshore installations and drilling campaigns.
-- **Marine transportation** — Movement of cargo, equipment and petroleum products by sea and inland waterways on time and voyage charter.
-- **Barge & workboat operations** — Flat-top, spud-leg and crane barges with tugs and workboats for towage, mooring and marine works.
-- **Marine procurement & supply** — Sourcing and delivery of vessel spares, consumables, provisions, fuel and marine equipment.
-- **Vessel mobilisation & demobilisation** — Preparing vessels to join or leave a campaign — surveys, certification, insurance and transit to or from location.
-- **Offshore project logistics** — End-to-end logistics for offshore construction and installation projects, including heavy-lift and out-of-gauge cargo.
-- **Fleet management** — Maintenance planning, crewing, compliance and performance monitoring across multi-vessel fleets.
+- **Swamp & deep offshore logistics** — Complete marine logistics spreads (houseboats, tugs, crew boats, catering, diesel, potable water, waste disposal and security escort) for pipeline, wellhead and field operations.
+- **Vessel charter & management** — Owned vessels and fast access to key owners’ fleets: crew boats, tugboats, houseboats, hovercraft, PSVs, AHTS, CSVs and diving support vessels.
+- **Barges & offshore heavy equipment** — Lay, fuel, ramp, dump and jack-up barges, offshore heavy-duty equipment and crane services.
+- **Marine security, surveillance & escort** — Security personnel, pipeline surveillance and armed escort. Licensed Private Guard Maritime Company, with Navy and Army gunboats on call.
+- **Bunkering, fresh water & chandelling** — Vessel bunkering, fresh water at sea and in difficult riverine terrain, and ship chandelling, as supplied to SPDC East and West.
+- **Offshore catering & accommodation** — Houseboats and accommodation barges with first-class offshore catering, delivered with Courdeau Catering.
 
-### Engineering & construction
+### Mechanical & civil engineering
 
-- **Pipeline & flowline construction** — Construction of pipelines and flowlines, and modification of gas flowlines on producing facilities.
-- **Jetty & marine construction** — Piled jetties, berthing and mooring dolphins, quay walls, loading platforms and marine repairs.
-- **Dredging & land reclamation** — Capital and maintenance dredging, land reclamation, shoreline protection and bathymetric survey.
-- **Roads & earthworks** — Highways, terminal access roads, drainage, culverts and bridge approaches.
-- **Civil & structural engineering** — Tank farms, process buildings, bunds, deep foundations and structural steel erection.
+- **Pipeline & flowline construction** — Construction of pipelines and flowlines, modification of gas flowlines, and subsea heavy-duty equipment construction and installation.
 - **Steel fabrication & boatbuilding** — Fabrication of steel structures and pressure vessels, and construction of barges, houseboats and shallow-water crew boats.
-- **Engineering design & project management** — Bespoke engineering design, EPCM delivery, and technical sales and support engineering.
+- **Facility maintenance & upgrades** — Maintenance of pipelines, storage facilities and heat exchangers, plus environmental and safety upgrades of crude production facilities.
+- **Engineering design & project management** — Bespoke engineering design, project management, technical sales and support engineering for project-based procurement.
+- **Piling & foundations** — Design and execution of piling projects with our sister companies.
+- **Jetty construction** — Design and construction of jetties, delivered to timeline and budget.
+- **Roads & bridges** — Design and construction of roads and bridges, including access routes to riverine and terminal sites.
+- **Dredging & land reclamation** — Dredging and reclamation works, and the marine support spread around them, as delivered for SPDC at Tunu Wells 3 and 5.
 
-### Instrumentation & asset integrity
+### Instrumentation & control automation
 
-- **Instrumentation & control systems** — Procurement, supply, installation and commissioning of analytical, control and safety systems.
-- **Fiscal metering & flow measurement** — Supply, installation and commissioning of fiscal metering and flow measurement systems.
-- **Calibration & certification** — NUPRC-compliant calibration and certification of measurement systems, with technical manpower outsourcing.
-- **Plant maintenance & facility upgrades** — Maintenance of pipelines, storage facilities and heat exchangers, plus environmental and safety upgrades to crude production facilities.
+- **Control & safety systems** — Procurement, supply, installation and commissioning of analytical, control and safety systems.
+- **Metering systems** — Supply, installation and commissioning of metering and measurement systems.
+- **Calibration & certification** — Calibration and certification of measurement systems.
+- **Post-installation maintenance** — Maintenance and sustenance of installed systems so they keep delivering value after commissioning.
+- **Control & automation specialists** — Control and automation specialist manpower for oil and gas operators in Nigeria.
 
-### Supply & equipment
+### Procurement, leasing & manpower
 
-- **Equipment & plant hire** — Bare or operated hire of excavators, dozers, tippers, rollers, cranes and forklifts, plus barges, pontoons, tugs and workboats — with maintenance, fuel and operators on request.
-- **Oilfield equipment & materials** — Wellheads, line pipe, fittings, tubing, connectors, seal rings, valves and umbilical hoses; pumps, heat exchangers, plates, beams and gratings; and instrumentation components.
-- **LPG, industrial gases & oilfield chemicals** — Bulk supply and distribution of LPG, industrial gases and specialised oilfield chemicals.
-- **Technical manpower & land logistics** — Control and automation specialists, general technical manpower, and land logistics and haulage.
+- **Piping, wellhead & mechanical procurement** — Line pipe, fittings, tubing, connectors, seal rings, valves, Christmas trees, choke and shut-off valves, umbilical hoses; manifold parts; heat exchangers, pumps, plates, beams and gratings.
+- **Instrumentation supply** — Actuators, control panels, pressure gauges and transmitters, testers, analysers and instrumentation valves.
+- **Heavy equipment leasing** — Heavy-duty marine and engineering construction equipment for land, swamp and deep offshore: ROVs, cranes from 30 t to 80 t, and everything from swamp buggies to production platforms.
+- **Specialised manpower** — Crews to operate leased equipment, and engineers and technicians to fill expert gaps on your project.
+- **Warehousing** — Permitted warehousing to support procurement and in-country logistics.
+- **LPG & industrial gases** — Supply and distribution of LPG and industrial gases.
 
 <!-- END GENERATED -->
 
@@ -126,14 +226,16 @@ We work across Nigeria, with offices in Port Harcourt and Lagos, and a United
 States office in Houston, Texas.
 
 **Can you take on work outside Nigeria?**
-_To be confirmed._
+Our operations are in Nigeria. Overseas procurement and cargo are coordinated by
+Gasstocks Inc. in Houston, with partner logistics bases in London, Belgium,
+India, China and Hong Kong. For anything else, please ask the team.
 
 **What is your typical mobilisation time?**
 _To be confirmed._
 
-**Do you hire out equipment without operators?**
-Yes — plant and vessels are available bare or operated, with maintenance, fuel
-and certified operators supplied on request.
+**Do you supply crews or operators with equipment?**
+Yes. We lease heavy-duty marine and construction equipment and provide the
+specialised manpower to run it. Vessels come crewed. For bare hire, ask the team.
 
 ---
 

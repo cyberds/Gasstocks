@@ -165,7 +165,7 @@ export default function PortfolioForm({ id, initial }: { id?: string; initial?: 
               set('slug', e.target.value);
             }}
           />
-          <span className="hint">gasstocks.com/portfolio/{v.slug || '…'}{id ? ' — changing this breaks existing links to the page' : ''}</span>
+          <span className="hint">gasstocksltd.com/portfolio/{v.slug || '…'}{id ? ' — changing this breaks existing links to the page' : ''}</span>
           {fields.slug && <span className="err">{fields.slug}</span>}
         </div>
         <div className="adm-field">

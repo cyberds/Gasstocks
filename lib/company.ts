@@ -63,13 +63,107 @@ export const COMPANY = {
       logo: '/assets/ISO-9001-2015-DQS-300x300.png',
       logo2: '/assets/IQNET-300x300.png'
     },
-    { headline: 'NUPRC', detail: 'Licensed operator', logo: '/assets/NUPRC-logo.png' },
+    { headline: 'NUPRC', detail: 'Licensed operator · service-category permits (issued by DPR, now NUPRC)', logo: '/assets/NUPRC-logo.png' },
     { headline: 'NCDMB', detail: 'NOGIC JQS · Category 1 Marine Vessel Operator', logo: '/assets/NOJIC-JQS-logo.webp' },
     { headline: 'IMCA', detail: 'Member contractor', logo: '/assets/IMCAlogo-768x284.png' },
     { headline: 'PETAN', detail: 'Member', logo: '/assets/UPDATED-PETAN-LOGO-Transparent.webp' },
     { headline: 'RC359117', detail: 'Registered in Nigeria · 2008' },
   ],
 } as const;
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Everything below is taken from the Gasstocks Limited business profile
+   (Gasstocks_Limited_Company_Profile_Accessible.md, © 2019). Wording is tidied
+   but claims are not extended. The profile is a 2019 document — dated items
+   (contract periods, "to date") describe that point in time.
+   ───────────────────────────────────────────────────────────────────────── */
+
+/** Clients. The first eight are the profile's client page; the last three
+ *  come from the previous website and are kept pending client confirmation. */
+export const CLIENTS = [
+  { name: 'Shell Petroleum Development Company of Nigeria (SPDC)', logo: '/assets/clients/Shell-gas-station-logo-trans.png' },
+  { name: 'Nigerian Agip Oil Company (Eni)', logo: '/assets/clients/eni-logo.png' },
+  { name: 'Nigeria LNG (NLNG)', logo: '/assets/clients/nlng-logo.png' },
+  { name: 'Chevron Nigeria Limited', logo: '/assets/clients/Chevron_Logo.svg.webp' },
+  { name: 'Mobil Producing Nigeria (ExxonMobil)', logo: '/assets/clients/Exxon_Mobil_Logo.svg.webp' },
+  { name: 'Total E&P Nigeria (TotalEnergies)', logo: '/assets/clients/totalenergies-logo.png' },
+  { name: 'Saipem', logo: '/assets/clients/saipem-logo.png' },
+  { name: 'Eroton Exploration & Production', logo: '/assets/clients/eroton-logo.png' },
+  { name: 'NNPC Limited', logo: '/assets/clients/Nigerian_National_Petroleum_Company_logo.svg.webp' },
+  { name: 'Ardova Plc', logo: '/assets/clients/ardova.e1c5751.png' },
+  { name: 'Ronish', logo: '/assets/clients/ronish-logo.png' },
+] as const;
+
+/** The owned and accessible fleet, as listed on the profile's equipment page. */
+export const FLEET = [
+  { name: 'River tugboats', spec: '500 hp, 800 hp and 1,000 hp' },
+  { name: 'Ocean tugboats', spec: 'Three power classes (30, 40 and 50)' },
+  { name: 'Ramp barges', spec: '500 t, 800 t and 1,000 t' },
+  { name: 'Dump barges', spec: '500 t to 1,500 t' },
+  { name: 'Passenger crew boats', spec: '40, 50 and 60 seats · 20–25 knots' },
+  { name: 'Houseboats', spec: '40-, 60- and 80-man, with catering and hotel services' },
+  { name: 'Security vessels & gunboats', spec: 'Manned by the Nigerian Navy, Army and Police' },
+  { name: 'Patrol boats', spec: '15 passengers · 25 knots' },
+  { name: 'Fast crew / patrol vessels', spec: 'Accommodation for 10–15 · 25 knots' },
+  { name: 'Hovercraft', spec: '12 persons · 50 km/h' },
+  { name: 'Fast supply vessel', spec: '64 passengers, 18 berths · 20 knots' },
+  { name: 'DP3 multipurpose offshore construction vessel', spec: 'ROV, 40 t crane, helideck, 140 persons' },
+  { name: 'Cranes', spec: '30 t, 50 t, 60 t and 80 t' },
+] as const;
+
+/** Logistics bases operated with strategic partners. */
+export const LOGISTICS_BASES = [
+  'Port Harcourt', 'Lagos', 'Warri', 'Houston', 'India', 'China', 'Hong Kong', 'London', 'Belgium',
+] as const;
+
+/** Jetties and fabrication yards accessible for in-country logistics. */
+export const JETTIES = [
+  'Brawal Shipping Jetty, Onne FTZ',
+  'Starzs Marine & Engineering Jetty, FOT Onne',
+  'Premier Logistics Base (former Panalpina), Onne',
+  'El-Toutoma Jetty, Woji, Port Harcourt',
+  'Akpos Jetty, Abuloma, Port Harcourt',
+  'Hollyfield Jetty, Elelenwo Bypass, Port Harcourt',
+  'Tecon Jetty, Trans Amadi, Port Harcourt',
+  'Mabisel Jetty, Trans Amadi, Port Harcourt',
+  'Multiplan Jetty, Abuloma, Port Harcourt',
+  'PW Jetty, Abuloma, Port Harcourt',
+  'Lumbert Jetty, Trans Amadi',
+  'Nest Oil Jetty',
+  'Graham Petroserve Jetty, Warri',
+  'LADOL Deep Offshore Logistics Base, Lagos',
+] as const;
+
+/** Contract history from the profile. Client contact names are deliberately
+ *  omitted — they are third parties' personal details. */
+export const TRACK_RECORD = [
+  { client: 'SPDC', period: '2004 – 2007', contract: 'Oloma pipeline', scope: 'Crew boat for offshore pipeline surveillance' },
+  { client: 'SPDC', period: '2005 – 2007', contract: 'B-Nag / Oloma pipeline', scope: 'Crew boat and catering for pipeline surveillance' },
+  { client: 'SPDC', period: '2007 – 2009', contract: 'Krakama location', scope: 'Accommodation vessel' },
+  { client: 'SPDC', period: '2007 – 2009', contract: 'Cawthorne Channel', scope: 'Houseboat and catering for pipeline surveillance' },
+  { client: 'SPDC', period: '2008 – 2010', contract: 'Cawthorne Channel flow station', scope: 'Crew boat and accommodation barge' },
+  { client: 'SPDC', period: '2008 – 2010', contract: 'Krakama flow station', scope: 'Crew boat, accommodation barge and catering' },
+  { client: 'SPDC', period: '2017 – 2019', contract: 'Pipeline maintenance, Patrick Waterside', scope: 'Full marine logistics spread' },
+  { client: 'SPDC', period: '2018 – 2019', contract: 'Dredging, Tunu Well 3 / Kanbo', scope: 'Full marine logistics spread' },
+  { client: 'SPDC', period: '2018 – 2019', contract: 'Dredging, Tunu Well 5', scope: 'Full marine logistics spread' },
+  { client: 'SPDC', period: '2018 –', contract: 'Wellhead maintenance & wireline, Soku', scope: 'Full marine logistics spread' },
+  { client: 'SPDC', period: '2018 –', contract: 'Wellhead maintenance, Odimodi / Ogbotobo', scope: 'Full marine logistics spread' },
+  { client: 'SPDC', period: '2019 – 2021', contract: 'Dodo North field security support', scope: 'Full marine logistics spread' },
+  { client: 'Eroton E&P', period: '2018 –', contract: 'Akaso field workover, Cawthorne Channel', scope: 'Houseboat, tugboat and ancillary services' },
+  { client: 'Eroton E&P', period: '2018 –', contract: 'Akaso field workover, Cawthorne Channel', scope: 'Tugboat fuel and security service' },
+] as const;
+
+/** What "full marine logistics spread" means in the profile's contract table. */
+export const LOGISTICS_SPREAD =
+  'Houseboats, tugboats, crew boats, catering, diesel (AGO), potable water, waste disposal and security escort';
+
+/** Operating credentials the profile names, beyond the accreditations above. */
+export const CREDENTIALS = [
+  { headline: 'NSCDC licence', detail: 'Private Guard Maritime Company · NSCDC/PG/015/000697' },
+  { headline: 'Marine insurance', detail: 'Hull, public liability and group life · Cornerstone Insurance Plc' },
+  { headline: 'Staff health cover', detail: 'Staff, spouses and up to four children · Wellness Health Management Services' },
+  { headline: 'Offshore catering', detail: 'Delivered with Courdeau Catering' },
+] as const;
 
 /** Display forms. Kept beside the data so formatting never drifts per-usage. */
 export const DISPLAY = {
@@ -92,26 +186,25 @@ export const links = {
 } as const;
 
 /* ─────────────────────────────────────────────────────────────────────────
-   UNVERIFIED CLAIMS STILL ON THE PAGE
-   Deliberately NOT represented in this file, so nothing here can launder them
-   into the chatbot. Still awaiting the client:
+   OPEN QUESTIONS for the client. The 2019 business profile disagrees with
+   the site on these points; the site values are kept until confirmed:
 
-   - Footer: "operating since 2008" (profile lists three offices, in
-     Nigeria and the USA).
-   - Hero stat strip: "184 projects delivered" (profile gives no project count).
-   - Equipment rail: "24 units / 31 units / 96 units / 94% / 48h" fleet and
-     availability figures, flagged as placeholders since the original build.
-   - Two 3D journey panels carry spec strips: "Design code — BS 6349 · Eurocode"
-     and "Piling — Tubular to 1,220 mm" (panel 3), "Roads built — 610 km
-     cumulative" and "Standard — AASHTO · ISO 9001" (panel 4). Left in place
-     because design codes describe what you build TO rather than a credential
-     you hold, which is a weaker claim than the certifications that were
-     removed — but "610 km cumulative" is an unevidenced metric of the same
-     kind as "184 projects delivered", and none of it is confirmed.
+   - Port Harcourt address: profile gives 36D Herbert Macauley Street, Amadi
+     Flats, Old GRA; site gives 41 Herbert Macauley Street.
+   - Houston address: profile gives 19830 F.M. 1093, Suite 601, Richmond TX
+     77407; site gives 3317 McCulloch Circle, Houston TX 77056.
+   - Email: profile gives enquiries@gasstocksltd.com; site uses
+     info@gasstocksinc.org.
+   - The profile also lists cellular 0703 409 0947 and 0805 281 2645.
+   - Leadership: profile says "Managing Director" with an MBA and an MSc in
+     Project Management, both from Queen Mary University of London. The site
+     says CEO, MBA from the University of Benin, MSc from Queen Mary.
+   - Profile contracts start in 2004 but business "commenced" in 2008.
+   - The DP3 vessel spec (ROV, 40 t crane, helideck, 140 persons) is garbled in
+     the profile across two rows (DP3 / Gunboats); read here as the DP3's.
+   - NNPC, Ardova and Ronish logos come from the previous site, not the profile.
 
-   RESOLVED: the services question — the client confirmed the previous site's
-   dredging, roads & earthworks, jetty construction and ship management lines
-   are genuine, so lib/services.ts is the union of both sources. The compliance
-   over-claims are gone. The hero's "est. 2004" is corrected to 2008, which the
-   profile and the About accordion both give.
+   RESOLVED: fabricated hero stats (184 projects, 14 countries, 9
+   accreditations), equipment-rail fleet figures, and the design-code and
+   tonnage spec strips in the 3D journey have been replaced with profile facts.
    ───────────────────────────────────────────────────────────────────────── */

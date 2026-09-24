@@ -86,20 +86,20 @@ export default function SiteHeader() {
               <div className="mega-menu">
                 <div className="mega-menu-grid">
                   <a href="/services/marine-vessels" className="mega-card">
-                    <img src="/assets/portfolio/2/IMG-20260618-WA0011.jpg" alt="Marine & Vessels" />
-                    <span>Marine & vessels</span>
+                    <img src="/assets/portfolio/2/IMG-20260618-WA0011.jpg" alt="Marine & logistics" />
+                    <span>Marine & logistics</span>
                   </a>
                   <a href="/services/engineering-construction" className="mega-card">
-                    <img src="/assets/portfolio/1/IMG-20260618-WA0025.jpg" alt="Engineering & Construction" />
-                    <span>Engineering & construction</span>
+                    <img src="/assets/portfolio/1/IMG-20260618-WA0025.jpg" alt="Mechanical & civil engineering" />
+                    <span>Mechanical & civil engineering</span>
                   </a>
                   <a href="/services/instrumentation-asset-integrity" className="mega-card">
-                    <img src="/assets/portfolio/2/IMG-20260618-WA0014.jpg" alt="Instrumentation & Asset Integrity" />
-                    <span>Instrumentation & asset integrity</span>
+                    <img src="/assets/portfolio/2/IMG-20260618-WA0014.jpg" alt="Instrumentation & control automation" />
+                    <span>Instrumentation & control automation</span>
                   </a>
                   <a href="/services/supply-equipment" className="mega-card">
-                    <img src="/assets/portfolio/1/IMG-20260618-WA0028.jpg" alt="Supply & Equipment" />
-                    <span>Supply & equipment</span>
+                    <img src="/assets/portfolio/1/IMG-20260618-WA0028.jpg" alt="Procurement, leasing & manpower" />
+                    <span>Procurement, leasing & manpower</span>
                   </a>
                 </div>
               </div>
@@ -198,10 +198,10 @@ export default function SiteHeader() {
                 {activeAccordion === 'services' && (
                   <div className="mobile-sublinks">
                     <a href="/services" onClick={() => setMobileMenuOpen(false)}>All Services Overview</a>
-                    <a href="/services/marine-vessels" onClick={() => setMobileMenuOpen(false)}>Marine & Vessels</a>
-                    <a href="/services/engineering-construction" onClick={() => setMobileMenuOpen(false)}>Engineering & Construction</a>
-                    <a href="/services/instrumentation-asset-integrity" onClick={() => setMobileMenuOpen(false)}>Instrumentation & Asset Integrity</a>
-                    <a href="/services/supply-equipment" onClick={() => setMobileMenuOpen(false)}>Supply & Equipment</a>
+                    <a href="/services/marine-vessels" onClick={() => setMobileMenuOpen(false)}>Marine & Logistics</a>
+                    <a href="/services/engineering-construction" onClick={() => setMobileMenuOpen(false)}>Mechanical & Civil Engineering</a>
+                    <a href="/services/instrumentation-asset-integrity" onClick={() => setMobileMenuOpen(false)}>Instrumentation & Control Automation</a>
+                    <a href="/services/supply-equipment" onClick={() => setMobileMenuOpen(false)}>Procurement, Leasing & Manpower</a>
                   </div>
                 )}
               </div>

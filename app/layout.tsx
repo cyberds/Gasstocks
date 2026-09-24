@@ -23,17 +23,18 @@ const barlowCondensed = Barlow_Condensed({
 export const metadata: Metadata = {
   title: {
     template: '%s | Gasstocks Limited',
-    default: 'Gasstocks Limited | Marine & Civil Infrastructure Contractor',
+    default: "Gasstocks Limited | Marine Logistics & Engineering for Nigeria's Oil and Gas",
   },
   description:
-    'Gasstocks is a premier marine and civil infrastructure contractor operating in Nigeria since 2008. We provide dredging, shipping, marine construction, civil engineering, and plant hire services.',
+    'Gasstocks Limited is an indigenous Nigerian oil and gas services company, established in 2008. We deliver swamp and deep offshore marine logistics, mechanical and civil engineering, instrumentation and control automation, and procurement from Port Harcourt, Lagos and Houston.',
   keywords: [
-    'marine contractor',
-    'civil engineering',
-    'dredging services',
-    'shipping',
-    'marine construction',
-    'plant hire',
+    'marine logistics Nigeria',
+    'swamp logistics',
+    'houseboat charter Port Harcourt',
+    'crew boat charter',
+    'pipeline construction',
+    'instrumentation and control automation',
+    'oilfield procurement',
     'Nigeria',
     'Gasstocks Limited',
     'oil and gas infrastructure',
@@ -41,18 +42,18 @@ export const metadata: Metadata = {
   authors: [{ name: 'Gasstocks Limited' }],
   creator: 'Gasstocks Limited',
   publisher: 'Gasstocks Limited',
-  metadataBase: new URL('https://gasstocks.com'), // Replace with actual domain when available
+  metadataBase: new URL('https://gasstocksltd.com'),
   openGraph: {
-    title: 'Gasstocks Limited | Marine & Civil Infrastructure Contractor',
-    description: 'Premier marine and civil infrastructure contractor operating since 2008. Nine disciplines under one contract.',
-    url: 'https://gasstocks.com',
+    title: "Gasstocks Limited | Marine Logistics & Engineering for Nigeria's Oil and Gas",
+    description: 'Indigenous oil and gas services since 2008: marine logistics, engineering, instrumentation and procurement for operators across the Niger Delta.',
+    url: 'https://gasstocksltd.com',
     siteName: 'Gasstocks Limited',
     images: [
       {
         url: '/assets/og-image.jpg', // Ensure this exists or fallback to a standard image
         width: 1200,
         height: 630,
-        alt: 'Gasstocks Limited - Marine & Civil Infrastructure',
+        alt: 'Gasstocks Limited: marine logistics and engineering',
       },
     ],
     locale: 'en_NG',
@@ -61,7 +62,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Gasstocks Limited',
-    description: 'Premier marine and civil infrastructure contractor operating since 2008.',
+    description: 'Marine logistics, engineering, instrumentation and procurement for Nigeria’s oil and gas industry since 2008.',
     creator: '@gasstocks',
     images: ['/assets/og-image.jpg'],
   },
@@ -83,13 +84,13 @@ const orgSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "Gasstocks Limited",
-  "url": "https://gasstocks.com",
-  "logo": "https://gasstocks.com/assets/favicon.png",
+  "url": "https://gasstocksltd.com",
+  "logo": "https://gasstocksltd.com/assets/favicon.png",
   "foundingDate": "2008",
-  "description": "Gasstocks is a premier marine and civil infrastructure contractor operating in Nigeria since 2008, offering services such as dredging, marine construction, and civil engineering.",
+  "description": "Gasstocks Limited is an indigenous Nigerian oil and gas services company, established in 2008. We deliver swamp and deep offshore marine logistics, mechanical and civil engineering, instrumentation and control automation, and procurement from Port Harcourt, Lagos and Houston.",
   "contactPoint": {
     "@type": "ContactPoint",
-    "telephone": "+2348000000000",
+    "telephone": "+2348025240251",
     "contactType": "customer service",
     "areaServed": "NG",
     "availableLanguage": "en"

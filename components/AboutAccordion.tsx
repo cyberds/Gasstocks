@@ -22,19 +22,20 @@ type Item = {
   open?: boolean;
 };
 
-// Only "Who we are?" has real copy. The other three are filler awaiting real
-// text — swap the body here when it's ready, no other change needed.
+// Copy follows the Gasstocks business profile (Who are we, What we want to
+// become, Our purpose, Our competitive advantage).
 const ITEMS: Item[] = [
   {
-    title: 'Who we are?',
+    title: 'Who we are',
     open: true,
     body: (
       <p>
-        Gasstocks Limited is an indigenous Nigerian support services company focused on delivering
-        high-quality, efficient support services to Nigeria&apos;s upstream oil and gas industry.
-        Established in 2008, we work alongside operators and project teams to provide dependable
-        marine, engineering, instrumentation and supply support that helps keep operations moving
-        safely and on schedule.
+        Gasstocks Limited is an indigenous company in Nigeria&apos;s oil and gas industry. We
+        commenced business in 2008 and are managed by Nigerian and foreign professionals with
+        decades of experience in the global financial and energy sectors. We provide marine,
+        transportation and logistics, instrumentation and control automation, engineering and
+        procurement services to clients onshore and offshore, under permits from the industry&apos;s
+        regulatory agencies.
       </p>
     ),
   },
@@ -43,13 +44,13 @@ const ITEMS: Item[] = [
     body: (
       <>
         <p className="gs-acc-lede">
-          To be the first-choice support services partner for Nigeria&apos;s upstream oil and gas
-          industry.
+          To be the leading service provider of first choice in our market segment.
         </p>
         <p>
-          We remain focused on functional execution with a trained workforce backed by a highly
-          professional management team, and we continually raise the bar on the quality,
-          timeliness and value of what we deliver.
+          We pair a trained workforce with a professional management team, and bring current
+          technology, timely execution and competitive prices to every project. Our network of
+          partners across the global supply chain, from Houston and London to China, India and
+          Hong Kong, is what makes us the preferred choice.
         </p>
       </>
     ),
@@ -59,36 +60,36 @@ const ITEMS: Item[] = [
     body: (
       <>
         <p>
-          To deliver high-quality, efficient support services to Nigeria&apos;s upstream oil and gas
-          industry, while remaining economically sustainable and socially responsible.
+          To provide optimised, professional and efficient services that maximise returns on our
+          clients&apos; operations, while remaining economically sustainable and socially responsible.
         </p>
         <p>
           We are consistent in our commitment to our stakeholders, whether that is the client, the
-          communities in which we operate, or our employees. We remain alert to evolving industry
-          needs and continue to strengthen our delivery capability through disciplined execution,
-          local capability building and responsible operations.
+          communities in which we operate, or our employees. We support the government&apos;s local
+          content policy, protect the environment as part of our sustainability strategy, and keep
+          community relations strong enough to move easily through difficult terrain.
         </p>
       </>
     ),
   },
   {
-    title: 'Our values',
+    title: 'What sets us apart',
     body: (
       <>
         <p>
-          <b>Compliance and accountability</b> — deliver work that meets ISO, NUPRC, NCDMB and industry standards, with transparent, evidence-backed execution.
+          <b>Structure and discipline</b>: resources in the right place at the right time, and bank facilities always repaid without requests for waivers.
         </p>
         <p>
-          <b>Quality and timeliness</b> — execute contracts to specification and on schedule, with a focus on functional delivery and right-first-time performance.
+          <b>Maintenance culture</b>: every unit in our equipment pool is kept in top shape, with a short turnaround on client feedback.
         </p>
         <p>
-          <b>Integrity and professionalism</b> — act with honesty, fairness and respect, and maintain the highest standards of professional conduct.
+          <b>Lean delivery</b>: a lean management approach that consistently lowers project cost for our clients.
         </p>
         <p>
-          <b>Safety and sustainability</b> — protect people, assets and the environment, and operate in a way that is socially responsible and economically sustainable.
+          <b>Security built in</b>: a licensed Private Guard Maritime Company (NSCDC/PG/015/000697), with Navy and Army gunboats available at short notice.
         </p>
         <p>
-          <b>Local capability and sustainability</b> — build local workforce capacity, support knowledge transfer, and offer solutions that are economically sustainable and socially responsible.
+          <b>Covered and connected</b>: GPS-tracked vessels insured by Cornerstone Insurance Plc, and health cover for every staff member and their family.
         </p>
       </>
     ),

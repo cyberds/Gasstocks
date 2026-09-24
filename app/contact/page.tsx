@@ -133,7 +133,7 @@ export default function ContactPage() {
             Get in Touch
           </div>
           <h1 style={{ fontSize: 'clamp(44px, 6vw, 68px)', lineHeight: '1.05', margin: '0 0 24px', fontFamily: 'var(--font-heading)' }}>
-            We're here to help.
+            Talk to the Gasstocks team.
           </h1>
           <p
             style={{
@@ -144,8 +144,8 @@ export default function ContactPage() {
               textWrap: 'pretty',
             }}
           >
-            Reach out for enquiries, tenders, or to discuss how we can support your upstream operation
-            with reliable marine, engineering and logistics services.
+            Enquiries, tenders and prequalification go to our Port Harcourt office. Overseas cargo and
+            procurement are coordinated by Gasstocks Inc. in Houston.
           </p>
         </div>
 

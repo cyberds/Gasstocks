@@ -63,7 +63,7 @@ export default function AboutHero() {
         <img
           ref={imageRef}
           src="/assets/about-hero.png"
-          alt="About Gasstocks"
+          alt=""
           style={{
             width: '100%',
             height: '120%', // extra height for parallax
@@ -88,11 +88,11 @@ export default function AboutHero() {
         }}
       >
         <h1 style={{ color: '#fff', marginBottom: 'var(--space-4)' }}>
-          Building the Future, <br />
-          <span style={{ color: 'var(--color-accent-400)' }}>Engineering Excellence.</span>
+          Rethink service <br />
+          <span style={{ color: 'var(--color-accent-400)' }}>delivery.</span>
         </h1>
         <p style={{ margin: 0, opacity: 0.9, fontSize: '16px' }}>
-          Gasstocks Limited is a premier marine and civil infrastructure contractor. We bring accountability and expertise to every phase of construction, from the anchorage to the last kilometre of road.
+          Gasstocks Limited is an indigenous Nigerian oil and gas services company, established in 2008 to give operators in the Niger Delta the quality of service that International Oil Companies expect.
         </p>
       </div>
     </div>

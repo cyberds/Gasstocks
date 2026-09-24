@@ -10,22 +10,19 @@ import { servicesInGroup } from '../lib/services';
 
 const PHOTOS: Record<string, { src: string; alt: string }> = Object.fromEntries(
   [
-  { id: 'marine-logistics', src: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=900&q=70', alt: 'Cargo ships alongside a container terminal' },
-  { id: 'vessel-charter', src: 'https://images.unsplash.com/photo-1609337231803-2adad48ea1d1?auto=format&fit=crop&w=900&q=70', alt: 'Red offshore construction vessel at sea' },
-  { id: 'offshore-support', src: 'https://images.unsplash.com/photo-1749073668528-38ab64575f5d?auto=format&fit=crop&w=900&q=70', alt: 'Supply vessel servicing an offshore rig' },
-  { id: 'marine-transportation', src: 'https://images.unsplash.com/photo-1617952739858-28043cecdae3?auto=format&fit=crop&w=900&q=70', alt: 'Cargo ship under way on open sea' },
+  { id: 'marine-logistics', src: 'https://images.unsplash.com/photo-1749073668528-38ab64575f5d?auto=format&fit=crop&w=900&q=70', alt: 'Supply vessel servicing an offshore installation' },
+  { id: 'vessel-charter', src: 'https://images.unsplash.com/photo-1609337231803-2adad48ea1d1?auto=format&fit=crop&w=900&q=70', alt: 'Offshore vessel at sea' },
   { id: 'barge-workboat', src: 'https://images.unsplash.com/photo-1664029992353-e9089ff951d4?auto=format&fit=crop&w=900&q=70', alt: 'Crane barge and tug handling a heavy load' },
-  { id: 'marine-procurement', src: 'https://images.unsplash.com/photo-1587149185211-28a2ef4c9a10?auto=format&fit=crop&w=900&q=70', alt: 'Stacked cargo containers at port' },
-  { id: 'vessel-mobilisation', src: 'https://images.unsplash.com/photo-1647629037458-c5c6e8463f74?auto=format&fit=crop&w=900&q=70', alt: 'Workboat hull on the hard for inspection' },
-  { id: 'offshore-project-logistics', src: 'https://images.unsplash.com/photo-1629540946404-ebe133e99f49?auto=format&fit=crop&w=900&q=70', alt: 'Semi-submersible drilling rig in harbour' },
-  { id: 'fleet-management', src: 'https://images.unsplash.com/photo-1669235124385-099d158ae025?auto=format&fit=crop&w=900&q=70', alt: 'Tugboats moored together in a harbour' },
+  { id: 'marine-security', src: 'https://images.unsplash.com/photo-1669235124385-099d158ae025?auto=format&fit=crop&w=900&q=70', alt: 'Workboats moored together in a harbour' },
+  { id: 'bunkering', src: 'https://images.unsplash.com/photo-1587149185211-28a2ef4c9a10?auto=format&fit=crop&w=900&q=70', alt: 'Stacked cargo and supplies at port' },
+  { id: 'marine-hospitality', src: 'https://images.unsplash.com/photo-1629540946404-ebe133e99f49?auto=format&fit=crop&w=900&q=70', alt: 'Offshore accommodation unit in harbour' },
   ].map(({ id, ...p }) => [id, p]),
 );
 
 export default function MarineRail() {
   const rail = useRef<HTMLDivElement>(null);
   useRail(rail);
-  const cards = servicesInGroup('Marine & vessels');
+  const cards = servicesInGroup('Marine & logistics');
 
   return (
     <section id="marine" className="gs-showcase" aria-label="Marine services" style={{ paddingTop: '104px' }}>
@@ -35,9 +32,9 @@ export default function MarineRail() {
             <span style={{ width: '26px', height: '1px', background: 'var(--color-accent)' }}></span>
             <span style={{ fontSize: '10.5px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--color-accent-700)' }}>Flagship service · marine</span>
           </div>
-          <h2 style={{ maxWidth: '19ch' }}>Marine services, from charter to fleet management.</h2>
+          <h2 style={{ maxWidth: '19ch' }}>Swamp to deep offshore, one marine spread.</h2>
         </div>
-        <p style={{ fontSize: '14px', lineHeight: '1.6', maxWidth: '38ch', margin: '0', color: 'color-mix(in srgb,var(--color-text) 65%,transparent)', textWrap: 'pretty' }}>Vessels, crews and logistics for swamp, shallow-water and offshore operations across Nigeria — planned, mobilised and managed under one contract.</p>
+        <p style={{ fontSize: '14px', lineHeight: '1.6', maxWidth: '38ch', margin: '0', color: 'color-mix(in srgb,var(--color-text) 65%,transparent)', textWrap: 'pretty' }}>Houseboats, tugs, crew boats, barges, security escort, fuel, water and catering. It is the same spread we have supplied for SPDC pipeline, wellhead and dredging work across the Niger Delta.</p>
       </div>
 
       <div ref={rail} className="gs-rail" data-gs-rail="" role="group" aria-roledescription="carousel" aria-label="Marine services" tabIndex={0}>

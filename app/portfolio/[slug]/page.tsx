@@ -74,13 +74,13 @@ export default async function PortfolioDetailPage(props: { params: Promise<{ slu
               "name": "Gasstocks Limited",
               "logo": {
                 "@type": "ImageObject",
-                "url": "https://gasstocks.com/assets/favicon.png"
+                "url": "https://gasstocksltd.com/assets/favicon.png"
               }
             },
             "datePublished": portfolio.date,
             "mainEntityOfPage": {
               "@type": "WebPage",
-              "@id": `https://gasstocks.com/portfolio/${portfolio.slug}`
+              "@id": `https://gasstocksltd.com/portfolio/${portfolio.slug}`
             }
           })
         }}

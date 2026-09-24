@@ -7,15 +7,15 @@ import { z } from 'zod';
 
 /** Must match the <select> options in components/ContactForm.tsx. */
 export const SCOPES = [
-  'Shipping & chartering',
-  'Marine logistics',
-  'Dredging & reclamation',
-  'Jetty & marine construction',
-  'Marine security',
-  'Marine catering',
-  'Civil engineering',
-  'Roads & earthworks',
-  'Multi-discipline / EPC',
+  'Marine logistics & vessel charter',
+  'Marine security & escort',
+  'Bunkering, fresh water & catering',
+  'Mechanical engineering & pipelines',
+  'Civil works: piling, jetties, roads & bridges',
+  'Instrumentation & control automation',
+  'Procurement & materials supply',
+  'Equipment leasing & manpower',
+  'Multi-discipline / tender',
 ] as const;
 
 /* A missing field would otherwise report zod's generic "Invalid input" rather

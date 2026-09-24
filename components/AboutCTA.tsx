@@ -22,7 +22,7 @@ export default function AboutCTA({ onContactClick }: AboutCTAProps) {
           Ready to partner with Gasstocks?
         </h3>
         <p style={{ color: 'color-mix(in srgb, #fff 70%, transparent)', fontSize: '15px', marginBottom: '32px', lineHeight: 1.6 }}>
-          Reach out to discuss your marine logistics, civil engineering, or vessel chartering requirements with our expert team.
+          Tell us about your marine logistics, engineering, instrumentation or procurement requirement. Our team in Port Harcourt, Lagos or Houston will take it from there.
         </p>
         <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
           <a

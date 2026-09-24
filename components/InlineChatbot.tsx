@@ -19,7 +19,7 @@ const SUGGESTIONS = [
   'What services do you offer?',
   'What certifications do you hold?',
   'Where are your offices?',
-  'Can I hire equipment without operators?',
+  'Which vessels do you have?',
 ];
 
 function splitActions(text: string): { body: string; actions: string[] } {
